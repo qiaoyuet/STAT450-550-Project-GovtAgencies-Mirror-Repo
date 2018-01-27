@@ -1,0 +1,177 @@
+[ GOVERNMENT AGENCIES ] : Jan 25 THUR
+
+- Context: We have 2 datasets, both concerning civil services
+
+	> civil services in China are very decentralized (few located in Beijing)
+
+	> civil services staffing varies from level to level
+		LEVELS: province -> city -> prefecture -> county -> etc.
+		  - most are at county level
+		BRANCHES:  state, local / district
+
+	> tax collection
+		- duration: 1992 - 2012 / 2013 
+		- around 800,000 ppl involved (11% of civil service staff)
+		- 2nd largest branch of civil services
+
+	> EPA
+		- around 200,000 ppl
+		- 5th / 6th largest branch of civil services
+
+		- duration: 2004 - 2011
+		- overall, a smaller dataset than 'tax collection'
+		- Staffing at the county level has also increased
+
+- Data:
+	> For tax collection: 25 years, 30 provinces, 100 observations
+	> Some sample variables
+		- education level (has increased over time)
+		- age (has increased over time)
+		- turnover rate
+		- titles / positions
+		- types of tax bureau
+			i. district / branch bureau
+				+ stationary staff
+				+ actually deals with tax collection (???)
+
+			ii. DAE - "directly affiliated entities"
+				+ non-stationary staff ("contract"-like)
+				+ changes from year to year
+
+			* I assume that some of these variables may also be shown in the EPA dataset as well
+	> Both datasets are have the structure of panel data
+		- however, we might not have too many observations
+
+- Client requests:
+	> data visualization
+		- capturing "shrinks", constants and changes in the data
+
+	> interpretation and explanation of the data
+
+	> sample Qs:
+		+ What prompts / determines staffing?
+			- there may be factors not included in the given 2 datasets that may contribute to this ...
+			- look for relations / patterns
+			- staffing levels are correlated with economic indicators
+		+ Evolution in the data? What can we see from the data?
+		+ Do we assign more staff during certain tasks / time periods?
+		+ Are there any variations in staffing trends within provinces / counties / etc. ?
+		+ Are there any significant similarities / differences (comparison) between the 2 datasets?
+		+ Are there any relations between the staffing and the economy?
+			(e.g. - better economy, more staffing? )
+		+ Are there some "synchronicity" appearing between the 2 datasets?
+		+ Are there significant "concentrations" (???) at certain levels of staffing?
+		+ Possible data cleaning?
+		+ For the EPA dataset, how does departmental staffing evolve?
+
+	> 2 general aspects:
+		+ "storytelling" of the datasets - rather then just selecting some plots
+			^ interpretations
+			^ explanations
+			^ elaborations
+
+		+ analytics 
+			^ stats stuff
+
+- IDEAS:
+	> consider panel regression 
+		- Would like to control for economic changes
+	
+	> for the 'tax collection' dataset, consider combining the 2 branches
+		(local / district & state ) for a full depiction
+
+	> we might want to find other related datasets, albeit optional
+		^ e.g. - check chinese government sites for economic datasets
+
+	> in terms of persective, we might want to focus more on pattern / trend-finding as opposed to trying to find causal relations
+		* correlation != causation LOL *
+
+	> consider cluster analysis?
+	
+
+- COMMENTS: (from client or miscellaneous stuff)
+	> "overall, we have observed that the staffing in the county level has been increasing" (???)
+
+	> *client is really stressing on the panel regression approach*
+		^ THIS
+
+	> THERE MAY BE QUITE A BIT OF DATA CLEANING REQUIRED !!!
+		- client started cleaning the data but stopped
+			* should we be aware of how the client partially cleaned the data? *
+		- probably lots of missing values
+
+	> the client can provide more data as necessary, so ask (???)
+		- e.g. - size of total civil services across time periods
+
+	> staffing and tax policy changes are generally jointly caused by some other factor
+
+	> overall, it is difficult to track explanations
+		- we are dealing with "institutional variables"
+		- what we have is essentially just observational values, which are often difficult to find causal relations from
+
+- Q & A
+	> Are there any other response variables of interest?
+		+ hard to say
+		+ maybe total tax collected (revenue)?
+		+ "we will need to control for more things" (???)
+		+ we don't have very many dependent variables ...
+
+			* no concrete response to this questions; client is open to new ideas *
+
+	> How was the data collected?
+		+ hand-collected by students
+		+ is part of the "tax yearbook" and "EPA yearbook"
+			^ which are currently unexamined public data
+		+ other data can be grabbed from UBC's subscriptions (to economic datasets / info / journals / stuff )
+
+	> client is open to new visualization software and techniques
+		+ Wants that whatever is produced has the ability to be changed easily (i.e. name changes)
+
+	> What were some significant changes in tax policies during the time interval where the data was collected, if any?
+		+ many significant changes
+
+		+ in addition, there may be periods where the bureaus / organizations relabeled staff positions!
+
+		+ for example, during the period 1999 to 2002, we notice alot of change across agencies
+			^ during this time, there were more experimentation in the staffing (more DAEs, for example)
+
+	> How autonomous are the different levels?
+		^ e.g. provincial / state / county
+
+		+ for the EPA:
+			- it's not entirely "top-down"
+			- the national ministry generally sets the law, but lower-tier organizations have a lot of autonomy / independence / room for movement
+
+		+ staffing decision / divisions may often depend on the level
+			- for example, consider "local" branches
+				^ they have less power, that is, less revenue is collected
+				^ however, they have a slighly higher overall education level
+				^ there are clearer signs of autonomous decisions that are made here, in terms of staffing and other things
+				^ we notice that the staffing structures change more often with this group
+
+	> To clarify, are there overlaps between the different levels?
+		^ e.g. - if there are 10 ppl in the "county" level, are they included in the totals for the "provincial" level? 
+
+		- for EPA, definitely not. There's no overlap in levels in terms of people
+		- for 'tax collection', mostly not but there may be occasional changes
+
+	> For comparisons of organizations, do you have any preferences in terms of time periods / approaches? 
+		- nope, I (the client) is pretty open, no specific preference
+
+	> Why the preference for panel models / regressions?
+		- "it allows you to control for variables that you generally cannot control for" 
+
+		- COMMENT: in general, the observations / values we deal with in social science, esp. politics and governmental changes, are very "sticky"
+			-> that is, if we are just looking at the data, we need a lot of it to see that a particular change has been made
+			-> effects of governmental changes takes a long time to appear
+
+- ADMIN:
+	> WeChat group? NO
+	> next meetup? MARCH (sometime)
+	> email him regarding Github; send link for setup
+
+
+
+
+
+
