@@ -1,10 +1,10 @@
 # STAT450-Group-Project
 
-##Overview
+## Overview
 
 This repository is for project of Stat450/550 @ University of British Columbia.
 
-##Group Members
+## Group Members
 
 |   **name**     | **Github user name** |     **Program**     |
 |----------------|----------------------|---------------------|
@@ -15,8 +15,8 @@ This repository is for project of Stat450/550 @ University of British Columbia.
 |                |                      |                     |
 |                |                      |                     |
 
-##Client Information
+## Client Information
 
-##Case Summary
+## Case Summary
 
-##Proposal
+## Proposal
