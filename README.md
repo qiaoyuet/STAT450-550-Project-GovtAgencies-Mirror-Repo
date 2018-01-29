@@ -11,9 +11,9 @@ This repository is for project of Stat450/550 @ University of British Columbia.
 | wenzheng zhou  |     wenzhengzzz      |    M.S in stats     |
 | shanshan pi    |     ShanshanPi       |    M.S in stats     |
 | qiaoyue tang   |     qiaoyuet         |    M.S in stats     |
-|                |     katieli16        |    B.S              |
+| Katie Li       |     katieli16        |    B.S in stats     |
 | Jenne          |     Castaire         |                     |
-|                |     hxman027         |                     |
+| Harry Xu       |     hxman027         |    B.S in stats     |
 
 ## Client Information
 
