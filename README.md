@@ -13,7 +13,7 @@ This repository is for project of Stat450/550 @ University of British Columbia.
 | qiaoyue tang   |     qiaoyuet         |    M.S in stats     |
 | Katie Li       |     katieli16        |    B.S in stats     |
 | Jenne Hui      |     Castaire         |    B.S. in stats    |
-| Harry Xu       |     hxman027         |    B.S in stats     |
+| Harry Xu      |     hxman027         |    B.S. in stats    |
 
 ## Client Information
 
