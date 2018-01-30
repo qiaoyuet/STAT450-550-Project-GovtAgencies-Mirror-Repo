@@ -33,7 +33,7 @@ This project consists of two objectives(three if time allows):
 
 ## Case Proposal
 
-## Data:
+## Data Description
 
 
-## Analysis outline:
+## Analysis outline
