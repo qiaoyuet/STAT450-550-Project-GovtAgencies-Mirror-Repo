@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository is for project of Stat450/550 @ University of British Columbia.
+This repository is for project (The organization of tax collection and environmental protection in China) of Stat450/550 @ University of British Columbia.
 
 ## Group Members
 
