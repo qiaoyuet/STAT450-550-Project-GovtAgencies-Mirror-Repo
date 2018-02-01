@@ -19,6 +19,7 @@ This repository is for project (The organization of tax collection and environme
 
 - Name: Wei Cui 
 - Department: Peter A. Allard School of Law at UBC
+- [client's personal website](https://ubc.academia.edu/WeiCui)
 
 ## Case Summary
 
