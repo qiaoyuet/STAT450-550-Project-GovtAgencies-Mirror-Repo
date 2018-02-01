@@ -1,4 +1,4 @@
-# STAT450-Group-Project
+# STAT450-Group-Project-Government Agencies
 
 ## Overview
 
@@ -22,9 +22,9 @@ This repository is for project (The organization of tax collection and environme
 
 ## Case Summary
 
-The project aims to better understand the distribution of the employment for PRC?s civil services, mainly, from the number of staffing at each government level. The project is interested in finding whether there is, or when there is, and by how much is there a change in the organization of the tax offices. Whether there are any relationships among the age composition, education levels, and the amount of work force per area. 
+The project aims to better understand the distribution of the employment for China's civil services, mainly, from the number of staffing at each government level. The project is interested in finding whether there is, or when there is, and by how much is there a change in the organization of the tax offices. Whether there are any relationships among the age composition, education levels, and the amount of work force per area. 
 
-This project consists of two objectives(three if time allows): 
+This project consists of the following objectives: 
 - 1. To visualize data in a clear and appealing ways to identify any patterns and trends for government Staffing.  
 - 2. To formulate a hypthesis to test any factor's significance on the staffing numbers
 - 3. To create a model that defines the staffing at various levels
@@ -32,6 +32,5 @@ This project consists of two objectives(three if time allows):
 ## Case Proposal
 
 ## Data Description
-
 
 ## Analysis outline
