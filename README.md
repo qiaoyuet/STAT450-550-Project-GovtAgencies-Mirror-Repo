@@ -13,7 +13,7 @@ This repository is for project (The organization of tax collection and environme
 | Qiaoyue Tang   |    MSc. in Statistics     |    `qiaoyue.tang@stat.ubc.ca`     |
 | Katie Li       |    BSc. in Statistics     |                                   |
 | Jenne Hui      |    BSc. in Statistics     |    `jenne.hui@gmail.com`          |
-| Harry Xu       |    BSc. in Statistics     |                                   |
+| Harry Xu       |    BSc. in Statistics     |    `harryxu.ubc@gmail.com`        |
 
 ## Client Information
 
