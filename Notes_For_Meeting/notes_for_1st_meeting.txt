@@ -169,9 +169,3 @@
 	> WeChat group? NO
 	> next meetup? MARCH (sometime)
 	> email him regarding Github; send link for setup
-
-
-
-
-
-
