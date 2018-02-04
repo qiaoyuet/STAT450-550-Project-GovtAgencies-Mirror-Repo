@@ -11,7 +11,7 @@ This repository is for project (The organization of tax collection and environme
 | Wenzheng Zhou  |    MSc. in Statistics     |    `wenzheng.zhou@stat.ubc.ca`    |
 | Shanshan Pi    |    MSc. in Statistics     |    `shanshan.pi@stat.ubc.ca`      |
 | Qiaoyue Tang   |    MSc. in Statistics     |    `qiaoyue.tang@stat.ubc.ca`     |
-| Katie Li       |    BSc. in Statistics     |    'katie.li@alumni.ubc.ca'       |
+| Katie Li       |    BSc. in Statistics     |    `katie.li@alumni.ubc.ca`       |
 | Jenne Hui      |    BSc. in Statistics     |    `jenne.hui@gmail.com`          |
 | Harry Xu       |    BSc. in Statistics     |    `harryxu.ubc@gmail.com`        |
 
