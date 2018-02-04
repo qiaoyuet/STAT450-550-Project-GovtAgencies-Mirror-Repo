@@ -21,7 +21,9 @@ This repository is for project (The organization of tax collection and environme
 - Department: Peter A. Allard School of Law at UBC
 - [client's personal website](https://ubc.academia.edu/WeiCui)
 
-## Case Summary
+# Case Proposal
+
+### Case Summary
 
 The project aims to better understand the distribution of the employment for China's government braches: taxation administration services and Environmental Protection Agencies (EPAs), and mainly, the number of staffing at each government level, from year 1992 to 2013. Employment in taxation services are diviede into two branches covering the state tax bureau (STB) and local tax bureau (LTB). 
 The project is interested in finding whether there is, or when there is, and by how much there is a change in the organization of the tax offices. Are there any relationships among the age composition, education levels, and the amount of work force per area?
@@ -31,13 +33,11 @@ This project consists of the following objectives:
 - 2. To formulate a hypthesis to test any factor's significance on the staffing numbers.
 - 3. To create a model that defines the staffing at various levels
 
-## Case Proposal
-
-## Data Description
+### Data Description
 
 We have one dataset for each of the two civil service branches that we will analyze. The response variable for both datasets is the number of staff. Our data is structured as panel data because the measures of staffing vary in both time and other factors such as province, staffing level, and department. The environmental personnel branch dataset spans 1992 – 2011, and the explanatory variables are year, province, level of staffing, and department. The dataset for the tax administration branch includes more variables such as education level and age. There are also two different tax bureaus, state and local. We also have a third dataset of economic and demographic factors for each province and year, such as GDP and population – we can incorporate these variables in our panel regression.
 
-## Analysis outline
+### Analysis outline
   
   The first objective of the case study is to come up with meaningful ways to visualize the data. This is important because our dataset includes many variables and it is hard to grasp what trends are occurring without proper visualization. The client has stated that he would like the visualization to “tell a story”, meaning we should try to tie all the variables together and look at the big picture. We will use the Tableau software to explore the data – Tableau will allow us to plot multiple variables at once, apply dynamic filtering, and create dashboards to achieve the storytelling aspect. One aspect we might try to explore is the relationship between staffing levels and economic indicators – we could plot the staffing levels over time (filtering on certain provinces, levels, etc.) and overlay economic indicators on top, seeing if there are similar movements across time.  [**add more info about which variables/relations you want to illustrate, explore, etc?**]
  
