@@ -25,8 +25,7 @@ This repository is for project (The organization of tax collection and environme
 
 ### Case Summary
 
-The project aims to better understand the distribution of the employment for China's government braches: taxation administration services and Environmental Protection Agencies (EPAs), and mainly, the number of staffing at each government level, from year 1992 to 2013. Employment in taxation services are diviede into two branches covering the state tax bureau (STB) and local tax bureau (LTB). 
-The project is interested in finding whether there is, or when there is, and by how much there is a change in the organization of the tax offices. Are there any relationships among the age composition, education levels, and the amount of work force per area?
+The project aims to better understand the distribution and trends of employment for two of China's government branches: Taxation Administration Services and Environmental Protection Agencies (EPAs). Mainly, we will analyze the number of staffing at each government level, from year 1992 to 2013. Employment in taxation services are divided into two branches covering the state tax bureau (STB) and local tax bureau (LTB). The client is interested in finding whether there is, or when there is, and by how much there is a change in the organization of the tax offices. Additionally, are there any relationships among the age composition, education levels, and the amount of work force per area?
 
 This project consists of the following objectives: 
 - 1. To visualize data in a clear and appealing ways to identify any patterns and trends for government staffing.  
@@ -35,7 +34,7 @@ This project consists of the following objectives:
 
 ### Data Description
 
-We have one dataset for each of the two civil service branches that we will analyze. The response variable for both datasets is the number of staff. Our data is structured as panel data because the measures of staffing vary in both time and other factors such as province, staffing level, and department. The environmental personnel branch dataset spans 1992 – 2011, and the explanatory variables are year, province, level of staffing, and department. The dataset for the tax administration branch includes more variables such as education level and age. There are also two different tax bureaus, state and local. We also have a third dataset of economic and demographic factors for each province and year, such as GDP and population – we can incorporate these variables in our panel regression.
+We have one dataset for each of the two civil service branches that we will analyze. The response variable for both datasets is the number of staff. Our data is structured as panel data because the measures of staffing vary in both time and other factors such as province, staffing level, and department. The environmental personnel branch dataset spans 1992 – 2011, and the explanatory variables are year, province, level of staffing, and department. The dataset for the tax administration branch includes more variables such as education level and age. As stated above, there are two different tax bureaus, state and local. We also have a third dataset of economic and demographic factors for each province and year, such as GDP and population – we can incorporate these variables in our panel regression.
 
 ### Analysis outline
   
