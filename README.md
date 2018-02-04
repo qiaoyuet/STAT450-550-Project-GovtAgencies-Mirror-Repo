@@ -29,12 +29,12 @@ The project aims to better understand the distribution and trends of employment 
 
 This project consists of the following objectives: 
 - 1. To visualize data in a clear and appealing ways to identify any patterns and trends for government staffing.  
-- 2. To formulate a hypthesis to test any factor's significance on the staffing numbers.
+- 2. To formulate a hypothesis to test any factor's significance on the staffing numbers.
 - 3. To create a model that defines the staffing at various levels
 
 ### Data Description
 
-We have one dataset for each of the two civil service branches that we will analyze. The response variable for both datasets is the number of staff. Our data is structured as panel data because the measures of staffing vary in both time and other factors such as province, staffing level, and department. The environmental personnel branch dataset spans 1992 – 2011, and the explanatory variables are year, province, level of staffing, and department. The dataset for the tax administration branch includes more variables such as education level and age. As stated above, there are two different tax bureaus, state and local. We also have a third dataset of economic and demographic factors for each province and year, such as GDP and population – we can incorporate these variables in our panel regression.
+We have one dataset for each of the two civil service branches that we will analyze. The response variable for both datasets is the number of staff. Our data is structured as panel data because the measures of staffing vary in both time and other factors such as province, staffing level, and department. The environmental personnel branch dataset spans 1992 – 2011, and the explanatory variables are year, province, level of staffing, and department. The dataset for the tax administration branch includes more variables such as education level and age. As stated above, there are two different tax bureaus, state and local. Additionally, we have a third dataset of economic and demographic factors for each province and year, such as GDP and population – we can incorporate these variables in our panel regression.
 
 ### Analysis outline
   
