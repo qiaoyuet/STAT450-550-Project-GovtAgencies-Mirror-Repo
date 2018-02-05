@@ -15,6 +15,11 @@ This repository is for project (The organization of tax collection and environme
 | Jenne Hui      |    BSc. in Statistics     |    `jenne.hui@gmail.com`          |
 | Harry Xu       |    BSc. in Statistics     |    `harryxu.ubc@gmail.com`        |
 
+## Project Menu
+
+-- [STAT550](stat550)
+-- [STAT450](stat450)
+
 ## Client Information
 
 - Name: Wei Cui 
