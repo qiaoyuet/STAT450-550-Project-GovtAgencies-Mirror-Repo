@@ -38,7 +38,7 @@ Our main analysis will be on the panel datasets relating to each of the civil se
 
 The EPA dataset is the smaller of the two, containing staffing data spanning from 1992 to 2011. The data is separated by the factors Province, Government Level, and Department. On the otherhand, the TAS datasets are further separated into the branch levels of local and state tax bureaus (as mentioned above). These datasets contains the factors Age, Education Level, Government Level, Province, and Department. Interestingly, the time span of the staffing data depends on the factor we are looking at. For example, there are 8 years (1996, 2000 - 2007) of data by Age in contrast to the 3 years (2000 - 2003) by Government Level.
 
-Lastly , we have a third dataset containing economic and demographic variables such as GDP, Urban Area, and Population, for each province; the data spans from ... . We can incorporate this dataset into our panel regressions to see if there are any causal relations between these variables and the overall staffing trends / patterns. 
+Lastly , we have a third dataset containing economic and demographic variables such as GDP, Urban Area, and Population, for each province. These variables were tracked annually, from the years 2000-2013. We hope to incorporate this dataset into our visualization and panel regressions to see if there are any causal relations between these variables and the overall staffing trends and patterns. 
 
 ### Analysis outline
   
