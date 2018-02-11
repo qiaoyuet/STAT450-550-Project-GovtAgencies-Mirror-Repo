@@ -31,7 +31,7 @@ This repository is for project (The organization of tax collection and environme
 
 ### Case Summary
 
-This project aims to better understand the distribution and trends of employment for two of China's civil government branches: Taxation Administration Services (TAS) and Environmental Protection Agencies (EPA). Specifically, we will be analyzing the number of staff at each government level from years 1992 to 2013. Employment in TAS are divided into two branches covering the state tax bureaus (STB) and local tax bureaus (LTB). The client expressed interests in finding different sources of influence on the organization of staffing in the different government branches, and also how the staffing structure behaves and changes over time for both governmetn branches. We will be forming our hypotheses using these interests as a basis.
+This project aims to better understand the distribution and trends of employment for two of China's civil government branches: Taxation Administration Services (TAS) and Environmental Protection Agencies (EPA). Specifically, we will be analyzing the number of staff at each government level from years 1992 to 2013. Employment in TAS are divided into two branches covering the state tax bureaus (STB) and local tax bureaus (LTB). The client expressed interests in finding different sources of influence on the organization of staffing in the different government branches, and also how the staffing structure behaves and changes over time for both government branches. We will be forming our hypotheses using these interests as a basis.
 
 The main objectives of this project are: 
   1.  To visualize data in a clear and appealing ways to identify any patterns and trends for government staffing.  
