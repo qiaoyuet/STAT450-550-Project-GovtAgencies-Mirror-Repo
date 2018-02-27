@@ -1,0 +1,168 @@
+[ GROUPINGS : econ/demographica data ] 
+** based on 'suggested grouping by econ metrics' **
+
+>> http://kb.tableau.com/articles/issue/unable-to-use-groups-in-calculated-fields
+
++ GDPpercap
+	- High: Tianjing, Beijing, Shanghai
+	- Medium: Jiangsu, Inner Mongolia, Zhejiang, Lioning, Guangdong,  Fujian, Shandong
+	- Low: REST
+//
+IF[Province]='Tianjing' OR [Province]='Beijing' 
+    OR [Province]='Shanghai' 
+THEN 'High GDPpercap'
+ELSEIF[Province]='Jiangsu' OR [Province]='Inner Mongolia' 
+    OR [Province]='Zhejiang' OR [Province]='Liaoning' 
+    OR [Province]='Guangdong' OR [Province]='Fujian'
+    OR [Province]='Shandong' 
+THEN 'Medium GDPpercap'
+ELSE 'Low GDPpercap'
+END
+//
+
+
+
+
++ GDP
+	- High: Tianjing, Beijing, Shanghai
+	- Medium: Jiangsu, Inner Mongolia, Zhejiang, Laoning, Guangdong,  Fujian, Shandong
+	- Low: REST
+//
+IF[Province]='Tianjing' OR [Province]='Beijing'
+    OR[Province]='Shanghai'
+THEN 'High GDP'
+ELSEIF[Province]='Jiangsu' OR[Province]='Inner Mongolia'
+    OR[Province]='Zhejiang' OR[Province]='Laoning'
+    OR[Province]='Guangdong' OR[Province]='Fujian'
+    OR[Province]='Shandong'
+THEN 'Medium GDP'
+ELSE 'Low GDP'
+END
+//
+
+
+
+
++ Area/KM2
+	- High: Xinjiang, Tibet, Inner Mongolia
+	- Medium: Qinghan, Sichuan, Gangsu, Yunnan, Heilongjiang
+	- Low: REST
+//
+IF[Province]='Xinjiang' OR [Province]='Tibet'
+    OR [Province]='Inner Mongolia'
+THEN 'High Area/KM2'
+ELSEIF[Province]='Qinghan' OR [Province]='Sichuan'
+    OR [Province]='Gangsu' OR [Province]='Yunnan'
+    OR [Province]='Heilongjiang'
+THEN 'Medium Area/KM2'
+ELSE 'Low Area/KM2'
+END
+//
+
+
+
++ FDI 
+	- High: Jiangsu, Guangdong
+	- (???) Medium: Shandong, Zhejiang, Shanghai, Liaoning, Fujian, Tianjing
+	- Low: REST
+	** check this later -> mean differences between groups **
+//
+IF[Province]='Jiangsu' OR [Province]='Guangdong'
+THEN 'High FDI'
+ELSEIF[Province]='Shandong' OR [Province]='Zhejiang'
+    OR[Province]='Shanghai' OR [Province]='Liaoning'
+    OR[Province]='Fujian' OR [Province]='Tianjing'
+THEN 'Medium FDI'
+ELSE 'Low FDI'
+END
+//
+
+
+
++ Pop	(population)
+	** N/A **
+
+
+
++ AboveSizeInd
+	- High: Zhejiang, Guangdong, Shandong
+	- Medium: Henan, Liaoning, Fujian, Anhui, Hubei, Hebei, Sichuan,  Shanghai
+	- Low: REST
+//
+IF[Province]='Zhejiang' OR [Province]='Guangdong'
+    OR[Province]='Shandong'
+THEN 'High AboveSizeInd'
+ELSEIF[Province]='Henan' OR [Province]='Liaoning'
+    OR[Province]='Fujian' OR [Province]='Anhui'
+    OR[Province]='Hubei' OR [Province]='Hebei'
+    OR[Province]='Sichuan' OR [Province]='Shanghai'
+THEN 'Medium AboveSizeInd'
+ELSE 'Low AboveSizeInd'
+END
+//
+
+
++ PubEmp (public employees)
+	- High: Sichuan, Shandong, Henan, Guangdong, Hebei, Hunan
+	- (???) Medium: REST
+	- (???) Low: Chongqing, Shanghai, Tianjin, Hainan, Ningxia, Qinghai
+//
+IF[Province]='Sichuan' OR [Province]='Shandong'
+    OR[Province]='Hebei' OR[Province]='Hunan'
+THEN 'High PubEmp'
+ELSEIF[Province]='Chongqing' OR [Province]='Shanghai' 
+    OR[Province]='Tianjin' OR [Province]='Hainan'
+    OR[Province]='Ningxia' OR [Province]='Qinghai'
+THEN 'Low PubEmp'
+ELSE 'Medium PubEmp'
+END
+//
+
+
+
++ PubExp (public expenditures)
+	- (???) High: Guangdong
+	- (???) Medium: REST
+	- (???) Low: Qinghai, Hainan, Tibet, Ningxia, 
+	** maybe check this later? **
+//
+IF[Province]='Guangdong' THEN 'High PubExp'
+ELSEIF[Province]='Qinghai' OR [Province]='Hainan'
+    OR[Province]='Tibet' OR [Province]='Ningxia'
+THEN 'Low PubExp'
+ELSE 'Medium PubExp'
+END
+//
+
+
+
+
++ UrbPopRatio (urban population ratio)
+	- High: Shanghai, Beijing, Tianjin
+	- Medium: REST
+	- Low: Tibet
+//
+IF[Province]='Shanghai' OR [Province]='Beijing'
+    OR[Province]='Tianjin'
+THEN 'High UrbPopRatio'
+ELSEIF[Province]='Tibet' THEN 'Low UrbPopRatio'
+ELSE 'Medium UrbPopRatio'
+END
+//
+
+
+
+
++ Urban Area
+	- High: Shandong, Guangdong
+	- Medium/Low: REST 
+	- Liaoning 
+** maybe we should remove Liaoning? -> we don't really have enough data **
+//
+IF[Province]='Shandong' OR [Province]='Guangdong'
+THEN 'High UrbanArea'
+ELSEIF[Province]!='Liaoning' THEN 'Medium/Low UrbanArea'
+END
+//
+
+
