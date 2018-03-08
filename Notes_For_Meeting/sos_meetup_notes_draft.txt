@@ -1,0 +1,89 @@
+----------------------
+-- SOS MEETUP NOTES --
+----------------------
+
+>> MARCH 5th MON 
+
+- impudence used on 2006 TAX data -> to account for both temporary and permanent workers
+	^ not sure what the impudence formula / method is 
+
+- STB vs LTB plotting -> "dimensions of variation"
+
+- when modeling, think more about the variables you are including
+	-> the fact that it is there doesn't imply that it has to be in your model
+
+	^ total as opposed to the age or any specific level
+		^ start with the total staffing values, then more specific later
+
+- IDEA: spline-fitting -> then cluster coefficients
+	^ separate by similarities and differences; clusters of provinces, e.g.
+	^ -> check paper (similar method)
+
+	^ consider adding econ/demo variables later? currently just across times
+
+- main focus: differences across provinces (CLIENT OBJECTIVE)
+
+- perhaps drop the notions of missing values? (grad students)
+
+- province groupings / clusters will be pretty good 
+	^ quality over quantity of results and questions answered
+
+- >> to fit s-spline, we also need some points around the "time"
+		^ we need some "variation" -> consider age, education
+
+		^ IDEA: consider econ/demo-vars
+			-> provinces within econ/demo-var grouping levels = "pseudo-replicate"
+			-> need to think about what is your model replicates
+				^ time? age groupings? education groupings?
+
+- IDEA: ANOVA over provinces?
+
+- IDEA: differences over time? lag?
+	^ smoothing average? 
+	^ differences over subsequent years for each province (time-points)
+		^^ is average difference the same over the provinces?
+
+	^ think more about this one
+	^ (time becomes the replicates here)
+		-> /province = 10 observations (staffing value per year)
+
+- grad students working on EPB datasets?
+
+- regarding spline cluster
+	. to fit spline, we need to have "measured provinces multiple times"
+		^ once again, where will the replications occur?
+			(TAX: Units, EPB: Department)
+
+- make sure you know the limitations or how to express the question from
+	the method
+	^ note the assumptions made 
+		^ e.g. - affects of ___ is the same over all 
+			   - department 
+
+- WHAT IS THE VARIABLE OF REPLICATION?
+	^ province should NOT be the replication 
+	^ should we collapse some of the years?
+		- all observations across a time range / period 
+			^ source of variation
+
+- IDEA: consider collapsing into 2 time ranges (half and half?)
+	>> see if we detect any changes between them
+
+- unsupervised clustering on the splines?
+	^ cluster analysis ("functional data analysis")
+		^ i.e. - we are just clustering curves << we end up with ~30 curves
+			^ look into how this can be done
+
+- NOTE: we probably can't fit different models
+	-> once again, cluster on the spline curves
+
+- TODO: spline per province using age 
+	^ splines will give you the coefficients < cluster coefficients
+	^ the line will end up being crude
+		>> (smoothing? <- then we need variation)
+
+	^ similar on departments for EPB
+
+	^ OR vector over time that represents the province (10-d vector)
+		^ but we might have a bunch of dimensions
+			-> consider PCA to reduce dimensionality
