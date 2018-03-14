@@ -1,0 +1,102 @@
+--------------------
+-- MEETUP SOS 2.0 --
+--------------------
+
+- grad students -> revisit imputation around 2006 <- "artificial"?
+
+- clustering
+	. function will do a PCA on function (plot) amplitude <- 1st PCA
+		-> this may be different for 2nd PCA
+
+
+- add the # of PCA used for each plot -> see "K=2, K=3 plot"
+
+- NOTE: white paper -> function assumes all curves are centered at 0 
+	. if we are just doing "Differences", just looking at shape
+	. not as OKAY if some provinces start out
+	^ depends on what we want to present
+
+	. consider adding more PCA 
+	. consider centering the curves -> this changes the assumptions
+		^ losing interpretability; just compare time TRENDS, regardless
+		of staffing value size
+
+- another problem -> centering will induce negative values
+	^ lose interpretability
+
+- NEW METHOD: "non-negative matrix transformations / factorization"
+	. IDEA: similar to SVD (matrix decomposition)
+		-> decompose matrix into parts <- but parts needs to be positive
+		-> also some restriction on orthogonality (look into this)
+		-> dimensionality is reduced, but data keeps "positive" values
+			^ in this way, somewhat similar to PCA
+
+	. in likelihoods, the results may not be too different from what we get
+		^ perhaps a bit more "stable" than what we have currently
+
+	. ^ grad students will be working on this
+
+- consider less than 4 clusters -> looking at the 'By Change in Percentage' slide
+	-> consider putting the clusters into separate plots
+
+- another option: normalize the data to some size
+	^ perhaps normalize by province population size per year (demo/econ var)
+		-> to remove some of the amplitude (less extreme, possibly)
+	^ do this XD	
+
+- IDEA: maybe it would be interesting to consider differences in between different
+	year lags? 
+
+- maybe think about derivative interpretability
+	^ overall, we have some issues with interpretability
+
+- why are smoothing necessary?
+	-> assumes Gaussian <- recall
+	-> IDEA: we are estimate a function that changes by time. time as infinity
+		-> we estimate that true functional line
+		-> think of splines as a more dynamic way to capture the lines than,
+			for example, linear regression (which only allows for straight lines)
+				^ an extension 
+
+		-> even so, we still have a lot of parameters & dimensions
+			^ this is the job of the PCA -> reduce dimensionality of the spline
+
+		-> clustering ^ then happens on the most important (remaining) components
+			^ explains why the first PCA may just be capturing the position of
+				the lines
+
+		-> NOTE: this PCA is still a function! in the sense that the time
+			component is still there
+
+- consider optimizing the splines !!!
+	^ play around with the parameters
+	^ or even other bases, knots, other family of classes
+		^ currently using "polynomic"
+
+- main limitation -> ideas about amplitude
+	^ consider applying TS to remove the amplitude
+	^ or normalize the data based on the population
+
+	^ results will be similar to the 'Differences'
+		-> interpretability is key 
+
+- look into why the recurrent runs of the function() result in randomness
+	^ look into this
+
+- IDEA: visualizations -> lots of options for clustering
+	. change clustering parameterizations
+	. shiny app? XD
+	. WOW!
+
+- see if there is a way that we can include some smoothness into Tableau plots?
+
+- MOST URGENT: data normalization and replot
+	^ look into the functions -> by the beginning of the next week
+	^ finish exploratory stuff on data
+
+- tomorrow's presentation -> talk about WHAT clustering is and the motivations
+	behind it
+	-> outline the steps, next steps, upcoming problems, goals based
+		on current plots, current problems in interpretability
+
+
