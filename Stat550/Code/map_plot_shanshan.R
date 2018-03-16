@@ -12,7 +12,7 @@ library(ggvis)
 # Maybe can delete the Chinese column
 Sys.setlocale(category = "LC_ALL",locale = "Chinese")
 
-# Raw Data
+# Load Raw Data
 # Subset the polygons with AREA larger than 0.005 and remove the N/A.
 
 cnmap <- readShapePoly("./Data/china_province_border_data/bou2_4p.shp")
