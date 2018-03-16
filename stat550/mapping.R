@@ -1,6 +1,6 @@
 library(maptools)
 
-x=readShapePoly(file.choose())
+x=readShapeSpatial("stat550/CHN_adm1.shp")
 plot(x)
 
 ColorFcn=function(mapdata,province,provcol,othercol) { 
