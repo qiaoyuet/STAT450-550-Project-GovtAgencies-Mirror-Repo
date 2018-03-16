@@ -3,7 +3,6 @@
 library(maptools)
 library(dplyr)
 library(ggplot2)
-library(ggvis)
 
 # Map data has Chinese column
 # I try to modify local settings in case of Chinese characters not displaying.
