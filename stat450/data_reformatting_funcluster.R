@@ -4,6 +4,9 @@ d[is.na(d)] <- 0
 temp <- aggregate(as.numeric(d$Number.of.Staff), by=list(d$Year, d$Province), FUN=sum)
 temp2 <- rbind(temp[1:18,], c("1996", "Chongqing", 0), temp[19:287,])
 
+temp3 <- temp2
+colnames(temp3) <- c("Year", "Province", "Staff")
+
 allYears <- unique(temp2$Group.1)
 allProv <- unique(temp2$Group.2)
 
@@ -13,3 +16,4 @@ colnames(final) <- allProv
 rownames(final) <- allYears
 
 #write.csv(final, file="TotalStaff.csv")
+#write.csv(temp3, file="TotalStaff_long.csv")
