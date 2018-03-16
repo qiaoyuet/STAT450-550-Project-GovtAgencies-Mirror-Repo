@@ -5,7 +5,9 @@ library(dplyr)
 library(ggplot2)
 library(ggvis)
 
-# Map data has Chinese column 
+# Map data has Chinese column
+# I try to modify local settings in case of Chinese characters not displaying.
+# using Sys.setlocale(category = "LC_ALL",locale = "Chinese")
 # But seems like it still cannot display Chinese
 # Maybe can delete the Chinese column
 Sys.setlocale(category = "LC_ALL",locale = "Chinese")
