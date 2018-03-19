@@ -64,3 +64,39 @@ province_cluster
 colnames(dat)[-1][which(province_cluster == 3)]
 colnames(dat)[-1][which(province_cluster == 2)]
 colnames(dat)[-1][which(province_cluster == 1)]
+
+#------------------------------------------------
+pop_imputed <- rowMeans(cbind(d1$Population, d2$Population, d3$Population, d4$Population, d5$Population))
+d1$Population <- pop_imputed
+staff_ratio <- left_join(temp2, d1, by=c("Year", "Province"))
+staff_ratio <- staff_ratio[, c(1,2,3,11)]
+staff_ratio$staff_ratio <- staff_ratio$Number.of.Staff.x/staff_ratio$Population
+
+allYears <- unique(staff_ratio$Year)
+allProv <- unique(staff_ratio$Province)
+staff_ratio <- staff_ratio[,5]
+final <- matrix(staff_ratio, nrow=length(allYears), ncol=length(allProv))
+colnames(final) <- allProv
+rownames(final) <- allYears
+
+write.csv(final, file="Staff_ratio_imputed.csv")
+
+dat <- read.csv("Staff_ratio_imputed.csv")
+dat_mat <- data.matrix(dat)[,-1]
+
+k=3
+dat_nmf <- nmf(dat_mat, rank = k)
+W <- dat_nmf@fit@W
+H <- dat_nmf@fit@H
+dim(W)
+dim(H)
+
+province_cluster <- rep(NA, ncol(H))
+for (i in 1:ncol(H)) {
+  province_cluster[i] <- which(H[,i]==max(H[,i]))
+}
+province_cluster
+
+colnames(dat)[-1][which(province_cluster == 3)]
+colnames(dat)[-1][which(province_cluster == 2)]
+colnames(dat)[-1][which(province_cluster == 1)]
