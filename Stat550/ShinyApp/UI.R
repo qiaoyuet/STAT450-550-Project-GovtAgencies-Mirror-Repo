@@ -12,7 +12,7 @@ ui <- fluidPage(
   sidebarPanel(p(strong("Filters")),
                br(),br(),
                selectInput("typeIn", "Filter type",choices = c("AGE", "EDUCATION", "UNIT"),
-                           selected = "WINE",multiple = TRUE),
+                           selected = "AGE",multiple = TRUE),
                submitButton("Search")),
   mainPanel(tabsetPanel(
     tabPanel("Map of China",
