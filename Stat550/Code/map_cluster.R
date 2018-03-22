@@ -9,7 +9,7 @@ tax_LTB_all_tidy$Chongqing[1] <- min(tax_LTB_all_tidy$Chongqing, na.rm = T)
 
 tax_STB_all_tidy <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv") %>% column_to_rownames("X")
 tax_STB_all_tidy$Chongqing[9] <- min(tax_STB_all_tidy$Chongqing, na.rm = T)
-
+tax_STB_all_tidy <- select(tax_STB_all_tidy,-Yangzhou)
 # Cluster for LTB
 k=3
 tax_LTB_all_tidy_nmf <- nmf(tax_LTB_all_tidy, rank = k)
@@ -21,6 +21,7 @@ for (i in 1:ncol(H)) {
   province_cluster[i] <- which(H[,i]==max(H[,i]))
 }
 cluster_tax_LTB_all <- data.frame(Province=colnames(tax_LTB_all_tidy),province_cluster)
+cluster_tax_LTB_all$province_cluster <- as.factor(cluster_tax_LTB_all$province_cluster)
 
 map_cluster <- cnmap                                                  %>% 
   plyr::join(cluster_tax_LTB_all, by = "Province")  
@@ -41,6 +42,7 @@ for (i in 1:ncol(H)) {
     province_cluster[i] <- which(H[,i]==max(H[,i]))
 }
 cluster_tax_STB_all <- data.frame(Province=colnames(tax_STB_all_tidy),province_cluster)
+cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
 
 map_cluster <- cnmap                                                  %>% 
     plyr::join(cluster_tax_STB_all, by = "Province")  
