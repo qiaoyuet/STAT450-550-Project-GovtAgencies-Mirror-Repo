@@ -29,8 +29,6 @@ ui <- fluidPage(
   mainPanel(tabsetPanel(
     tabPanel("Map of China",
              br(),
-             colourInput("col", "Color for the colored provinces", "#6799DB"),
-             br(),
              plotOutput("MapPlot")),
     tabPanel("Results Table",
              br(),
