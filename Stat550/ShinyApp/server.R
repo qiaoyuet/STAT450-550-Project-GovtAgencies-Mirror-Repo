@@ -8,6 +8,8 @@ library(shiny)
 
 server <- function(input, output){
   mapdata <- read.csv("cnmapdf.csv")
+  colnames(mapdata)[8] <- "Province"
+#  filtered_pro <- reactive()
 #  output$num_results <- renderText({ 
 #    n<-nrow()
 #    paste("We filtered out",n,"provinces")
