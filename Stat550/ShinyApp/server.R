@@ -7,7 +7,7 @@ library(shinyjs)
 library(shiny)
 
 server <- function(input, output){
-  mapdata <- read.csv("cnmapdf.csv")
+  mapdata <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
   colnames(mapdata)[8] <- "Province"
 #  filtered_pro <- reactive()
 #  output$num_results <- renderText({ 
