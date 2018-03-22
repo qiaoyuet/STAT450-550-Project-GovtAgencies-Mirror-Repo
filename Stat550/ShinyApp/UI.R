@@ -11,6 +11,8 @@ ui <- fluidPage(
   hr(),
   sidebarPanel(p(strong("Filters")),
                br(),br(),
+               sliderInput("yearInput", "Year", min = 1996, max = 2007, c(1996, 2007)),
+               br(),
                selectInput("typeInAge", "Age Group",choices = c("age 30 or below", "30-35", "36-40","41-45",
                                                                 "46-50","51-54","55-59","60 or above"),
                            selected = "age 30 or below",multiple = TRUE),

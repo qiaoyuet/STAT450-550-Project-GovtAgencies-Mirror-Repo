@@ -2,16 +2,15 @@ library(dplyr)
 library(reshape2)
 library(NMF)
 library(mice)
-library(abind)
 
-d <- read.csv("./Data/tax_tableau_data/AgeForTableau.csv")
+d <- read.csv("AgeForTableau.csv")
 # d[is.na(d)] <- 0
 # temp <- aggregate(as.numeric(d$Number.of.Staff), by=list(d$Year, d$Province), FUN=sum)
 # temp2 <- rbind(temp[1:18,], c("1996", "Chongqing", 0), temp[19:287,])
 
 any(is.na(d$Number.of.Staff))
 which(is.na(d$Number.of.Staff))
-exp_var <- read.csv("./Data/econdemographic.csv")
+exp_var <- read.csv("econdemographic.csv")
 temp <- aggregate(as.numeric(d$Number.of.Staff), by=list(d$Year, d$Province), FUN=sum)
 temp2 <- rbind(temp[1:18,], c("1996", "Chongqing", NA), temp[19:287,])
 colnames(temp2) <- c("Year", "Province","Number.of.Staff")
