@@ -1,8 +1,6 @@
 # Preparation
 # Load packages 
 library(maptools)
-library(dplyr)
-library(ggplot2)
 
 # Map data has Chinese column
 # I try to modify local settings in case of Chinese characters not displaying.
@@ -41,24 +39,5 @@ id_prov <- cnmap@data                                               %>%
   select(id = ID, prov_cn, prov_en)
 # use plyr package in a more efficient way
 cnmapdf <- plyr::join(fortify(cnmap), id_prov, by = "id")
+write.csv(cnmapdf, file="./Data/cnmapdf.csv")
 # head(cnmapdf)
-
-# Combining the Tax Data
-# Add Tax Data
-staff <- read.csv('AgeLTBforR.csv')
-colnames(staff)[2]='prov_en'
-colnames(staff)[3]='staff_num'
-
-# I just use the data in 1996 to test it.
-# We can dig into it later.
-# And I think we can also merge the cluster data to plot.
-
-map2df <- cnmapdf                                                   %>% 
-  plyr::join(subset(staff, Year == "1996")[1:3], by = "prov_en")  %>%
-  mutate(staff_num = as.numeric(as.character(staff_num)))
-
-pdf('Stat550/Figure/map.pdf',width = 8,height = 6)
-map2df                                                              %>%
-  ggplot(aes(x = long, y = lat, group = group, fill = staff_num))   +
-  geom_polygon(color = "grey")
-dev.off()
