@@ -4,14 +4,14 @@ library(NMF)
 library(mice)
 library(abind)
 
-d <- read.csv("AgeForTableau.csv")
+d <- read.csv("./Data/tax_tableau_data/AgeForTableau.csv")
 # d[is.na(d)] <- 0
 # temp <- aggregate(as.numeric(d$Number.of.Staff), by=list(d$Year, d$Province), FUN=sum)
 # temp2 <- rbind(temp[1:18,], c("1996", "Chongqing", 0), temp[19:287,])
 
 any(is.na(d$Number.of.Staff))
 which(is.na(d$Number.of.Staff))
-exp_var <- read.csv("econdemographic.csv")
+exp_var <- read.csv("./Data/econdemographic.csv")
 temp <- aggregate(as.numeric(d$Number.of.Staff), by=list(d$Year, d$Province), FUN=sum)
 temp2 <- rbind(temp[1:18,], c("1996", "Chongqing", NA), temp[19:287,])
 colnames(temp2) <- c("Year", "Province","Number.of.Staff")
@@ -43,9 +43,9 @@ final <- matrix(temp2.1, nrow=length(allYears), ncol=length(allProv))
 colnames(final) <- allProv
 rownames(final) <- allYears
 
-write.csv(final, file="TotalStaff_imputed.csv")
+write.csv(final, file="./Data/TotalStaff_imputed.csv")
 
-dat <- read.csv("TotalStaff_imputed.csv")
+dat <- read.csv("./Data/TotalStaff_imputed.csv")
 dat_mat <- data.matrix(dat)[,-1]
 
 k=3
@@ -79,9 +79,9 @@ final <- matrix(staff_ratio, nrow=length(allYears), ncol=length(allProv))
 colnames(final) <- allProv
 rownames(final) <- allYears
 
-write.csv(final, file="Staff_ratio_imputed.csv")
+write.csv(final, file="./Data/Staff_ratio_imputed.csv")
 
-dat <- read.csv("Staff_ratio_imputed.csv")
+dat <- read.csv("./Data/Staff_ratio_imputed.csv")
 dat_mat <- data.matrix(dat)[,-1]
 
 k=3

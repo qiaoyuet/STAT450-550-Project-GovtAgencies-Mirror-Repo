@@ -1,13 +1,12 @@
 # Preparation
 # Load packages 
 library(maptools)
-
 # Map data has Chinese column
 # I try to modify local settings in case of Chinese characters not displaying.
 # using Sys.setlocale(category = "LC_ALL",locale = "Chinese")
 # But seems like it still cannot display Chinese
 # Maybe can delete the Chinese column
-Sys.setlocale(category = "LC_ALL",locale = "Chinese")
+# Sys.setlocale(category = "LC_ALL",locale = "Chinese")
 
 # Load Raw Data
 # Subset the polygons with AREA larger than 0.005 and remove the N/A.
@@ -39,5 +38,6 @@ id_prov <- cnmap@data                                               %>%
   select(id = ID, prov_cn, prov_en)
 # use plyr package in a more efficient way
 cnmapdf <- plyr::join(fortify(cnmap), id_prov, by = "id")
+cnmapdf <- cnmapdf[,-8]
 write.csv(cnmapdf, file="./Data/cnmapdf.csv")
 # head(cnmapdf)
