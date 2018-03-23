@@ -1,6 +1,7 @@
 library(tidyverse)
 library(DT)
 library(stringr)
+library(maptools)
 library(shinyjs)
 library(shiny)
 
@@ -11,21 +12,29 @@ ui <- fluidPage(
   hr(),
   sidebarPanel(p(strong("Filters")),
                br(),br(),
+               sliderInput("yearInput", "Year", min = 1996, max = 2007, c(1996, 2007)),
+               br(),
+               selectInput("STBLTB", "STB or LTB?", choices = c("STB", "LTB"), selected = "LTB", multiple = F),
+               br(),
+               selectInput("NumCluster", "Number of Clusters", choices = c("2","3","4")),
+               br(),
                selectInput("typeInAge", "Age Group",choices = c("age 30 or below", "30-35", "36-40","41-45",
                                                                 "46-50","51-54","55-59","60 or above"),
                            selected = "age 30 or below",multiple = TRUE),
                br(),
                selectInput("typeInEdu", "Education Level",choices = c("PostGraduate", "Bachelors", "OtherPostSecondary",
                                                                       "TechnicalCollege","HighSchool","JuniorHigh"),
-                           selected = "PostGraduate",multiple = TRUE),
+                           selected = NULL,multiple = TRUE),
                br(),
                selectInput("typeInUnit", "Work Unit",choices = c("Admin", "Business","DAE Admin","DAE NonAdmin","Tax"),
-                           selected = "Admin",multiple = TRUE),
-               submitButton("Search")),
+                           selected = NULL,multiple = TRUE),
+               submitButton("Search"),
+               textOutput("num_results")),
   
   mainPanel(tabsetPanel(
     tabPanel("Map of China",
-             br()),
+             br(),
+             plotOutput("MapPlot")),
     tabPanel("Results Table",
              br(),
              downloadLink('DataDownload', 'Download the results table here'),
