@@ -5,14 +5,19 @@ library(maptools)
 library(ggplot2)
 library(shinyjs)
 library(shiny)
+library(NMF)
 
-STB <- read.csv("./Data/nmf_data/tax_LTB_all_tidy.csv")
-LTB <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv")
-mapdata <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
-colnames(mapdata)[8] <- "Province"
+#STB <- read.csv("./Data/nmf_data/tax_LTB_all_tidy.csv")
+#LTB <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv")
+STB <- read.csv("tax_LTB_all_tidy.csv")
+LTB <- read.csv("tax_STB_all_tidy.csv")
+LTB <- LTB[,-31]
+#cnmap <- read.csv("./Data/CHN_adm1_data/cnmapdf.csv") %>% column_to_rownames("X")
+cnmap <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
+colnames(cnmap)[8] <- "Province"
 LTB$Chongqing[1] <- min(LTB$Chongqing, na.rm = T)
 STB$Chongqing[9] <- min(STB$Chongqing, na.rm = T)
-STB <- select(STB,-Yangzhou)
+#STB <- select(STB,-Yangzhou)
 
 server <- function(input, output){
   
