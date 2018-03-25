@@ -2,8 +2,8 @@
 library(tidyverse)
 
 # Read data
-tax_data_LTB <- read.csv("./Data/tax_R_data/AgeLTBForR.csv")
-tax_data_STB <- read.csv("./Data/tax_R_data/AgeSTBForR.csv")
+tax_data_LTB <- read.csv("D:/AgeLTBForR.csv")
+tax_data_STB <- read.csv("D:/AgeSTBForR.csv")
 
 #Tidy data
 colnames(tax_data_LTB)[3] <- 'Number.of.Staff'
@@ -18,7 +18,7 @@ tax_LTB_all_tidy <- matrix(temp, nrow=length(allYears), ncol=length(allProv))
 colnames(tax_LTB_all_tidy) <- allProv
 rownames(tax_LTB_all_tidy) <- allYears
 
-write.csv(tax_LTB_all_tidy, file="./Data/nmf_data/tax_LTB_all_tidy.csv")
+write.csv(tax_LTB_all_tidy, file="Stat550/ShinyApp/tax_LTB_all_tidy.csv")
 
 #Tidy data for STB
 colnames(tax_data_STB)[3] <- 'Number.of.Staff'
@@ -33,4 +33,4 @@ tax_STB_all_tidy <- matrix(temp, nrow=length(allYears), ncol=length(allProv))
 colnames(tax_STB_all_tidy) <- allProv
 rownames(tax_STB_all_tidy) <- allYears
 
-write.csv(tax_STB_all_tidy, file="./Data/nmf_data/tax_STB_all_tidy.csv")
+write.csv(tax_STB_all_tidy, file="Stat550/ShinyApp/tax_STB_all_tidy.csv")
