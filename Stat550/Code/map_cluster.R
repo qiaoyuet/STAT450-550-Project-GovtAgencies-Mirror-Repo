@@ -34,7 +34,8 @@ map_cluster                                                             %>%
                       name="Province Cluster",
                       labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
     labs(x = "Longitude",
-         y = "Latitude")
+         y = "Latitude")+
+    ggtitle('Clustering Map for Chinese Government Agency LTB')
 dev.off()
 
 # Cluster for STB
@@ -54,13 +55,14 @@ map_cluster <- cnmap                                                  %>%
 
 pdf('Stat550/Figure/map_cluster_tax_STB_all.pdf',width = 8,height = 6)
 map_cluster                                                             %>%
-    ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
+    ggplot(aes(x = long, y = lat, group = group, fill = province_cluster)) +
     geom_polygon(color = "grey") +
     scale_fill_brewer(name="Province Cluster",
                       palette="Spectral",
                       labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
     labs(x = "Longitude",
-         y = "Latitude")
+         y = "Latitude") +
+    ggtitle('Clustering Map for Chinese Government Agency STB')
 
 dev.off()
 
@@ -104,7 +106,8 @@ map_cluster                                                             %>%
                       name="Province Cluster",
                       labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
     labs(x = "Longitude",
-         y = "Latitude")
+         y = "Latitude") +
+    ggtitle('Clustering Map for Chinese Government Agency LTB')
 dev.off()
 
 # Cluster for STB
@@ -130,6 +133,7 @@ map_cluster                                                             %>%
                       palette="Spectral",
                       labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
     labs(x = "Longitude",
-         y = "Latitude")
+         y = "Latitude") +
+    ggtitle('Clustering Map for Chinese Government Agency STB')
 
 dev.off()
