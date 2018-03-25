@@ -27,8 +27,8 @@ LTB$Hebei <- as.numeric(as.character(LTB$Hebei))
 LTB$Hebei[2] <- 21520
 #rownames(STB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
 #rownames(LTB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
-#STB_ratio <- read.csv("tax_STB_ratio_tidy.csv")
-#LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv")
+STB_ratio <- read.csv("tax_STB_ratio_tidy.csv")
+LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv")
 
 
 server <- function(input, output){
@@ -37,59 +37,109 @@ server <- function(input, output){
 
     if (input$STBLTB == "LTB") {
       
-      if (input$NumCluster == "2") {
-        k=2
-        tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
-        W <- tax_LTB_all_tidy_nmf@fit@W
-        H <- tax_LTB_all_tidy_nmf@fit@H
-      } else if (input$NumCluster == "3") {
-        k=3
-        tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
-        W <- tax_LTB_all_tidy_nmf@fit@W
-        H <- tax_LTB_all_tidy_nmf@fit@H
-      } else if (input$NumCluster == "4") {
-        k=4
-        tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
-        W <- tax_LTB_all_tidy_nmf@fit@W
-        H <- tax_LTB_all_tidy_nmf@fit@H
+      if (input$TotalRatio == "Total Number of Staff") {
+        if (input$NumCluster == "2") {
+          k=2
+          tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
+          W <- tax_LTB_all_tidy_nmf@fit@W
+          H <- tax_LTB_all_tidy_nmf@fit@H
+        } else if (input$NumCluster == "3") {
+          k=3
+          tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
+          W <- tax_LTB_all_tidy_nmf@fit@W
+          H <- tax_LTB_all_tidy_nmf@fit@H
+        } else if (input$NumCluster == "4") {
+          k=4
+          tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
+          W <- tax_LTB_all_tidy_nmf@fit@W
+          H <- tax_LTB_all_tidy_nmf@fit@H
+        }
+        province_cluster <- rep(NA, ncol(H))
+        for (i in 1:ncol(H)) {
+          province_cluster[i] <- which(H[,i]==max(H[,i]))
+        }
+        cluster_tax_LTB_all <- data.frame(Province=colnames(LTB),province_cluster)
+        cluster_tax_LTB_all$province_cluster <- as.factor(cluster_tax_LTB_all$province_cluster)
+        
+      } else if (input$TotalRatio == "Staff Ratio") {
+        if (input$NumCluster == "2") {
+          k=2
+          tax_LTB_all_tidy_nmf <- nmf(LTB_ratio, rank = k)
+          W <- tax_LTB_all_tidy_nmf@fit@W
+          H <- tax_LTB_all_tidy_nmf@fit@H
+        } else if (input$NumCluster == "3") {
+          k=3
+          tax_LTB_all_tidy_nmf <- nmf(LTB_ratio, rank = k)
+          W <- tax_LTB_all_tidy_nmf@fit@W
+          H <- tax_LTB_all_tidy_nmf@fit@H
+        } else if (input$NumCluster == "4") {
+          k=4
+          tax_LTB_all_tidy_nmf <- nmf(LTB_ratio, rank = k)
+          W <- tax_LTB_all_tidy_nmf@fit@W
+          H <- tax_LTB_all_tidy_nmf@fit@H
+        }
+        province_cluster <- rep(NA, ncol(H))
+        for (i in 1:ncol(H)) {
+          province_cluster[i] <- which(H[,i]==max(H[,i]))
+        }
+        cluster_tax_LTB_all <- data.frame(Province=colnames(LTB_ratio),province_cluster)
+        cluster_tax_LTB_all$province_cluster <- as.factor(cluster_tax_LTB_all$province_cluster)
       }
-      province_cluster <- rep(NA, ncol(H))
-      for (i in 1:ncol(H)) {
-        province_cluster[i] <- which(H[,i]==max(H[,i]))
-      }
-      cluster_tax_LTB_all <- data.frame(Province=colnames(LTB),province_cluster)
-      cluster_tax_LTB_all$province_cluster <- as.factor(cluster_tax_LTB_all$province_cluster)
-      
       map_cluster <- cnmap %>% plyr::join(cluster_tax_LTB_all, by = "Province")
       
       map_cluster %>%
         ggplot(aes(x = long, y = lat, group = group, fill = province_cluster)) +
         geom_polygon(color = "grey")
+      
     } else if (input$STBLTB == "STB") {
       
-      if (input$NumCluster == "2") {
-        k=2
-        tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
-        W <- tax_STB_all_tidy_nmf@fit@W
-        H <- tax_STB_all_tidy_nmf@fit@H
-      } else if (input$NumCluster == "3") {
-        k=3
-        tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
-        W <- tax_STB_all_tidy_nmf@fit@W
-        H <- tax_STB_all_tidy_nmf@fit@H
-      } else if (input$NumCluster == "4") {
-        k=4
-        tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
-        W <- tax_STB_all_tidy_nmf@fit@W
-        H <- tax_STB_all_tidy_nmf@fit@H
-      }
-      province_cluster <- rep(NA, ncol(H))
-      for (i in 1:ncol(H)) {
-        province_cluster[i] <- which(H[,i]==max(H[,i]))
-      }
-      cluster_tax_STB_all <- data.frame(Province=colnames(STB),province_cluster)
-      cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
-      
+        if (input$TotalRatio == "Total Number of Staff") {
+          if (input$NumCluster == "2") {
+            k=2
+            tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
+            W <- tax_STB_all_tidy_nmf@fit@W
+            H <- tax_STB_all_tidy_nmf@fit@H
+          } else if (input$NumCluster == "3") {
+            k=3
+            tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
+            W <- tax_STB_all_tidy_nmf@fit@W
+            H <- tax_STB_all_tidy_nmf@fit@H
+          } else if (input$NumCluster == "4") {
+            k=4
+            tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
+            W <- tax_STB_all_tidy_nmf@fit@W
+            H <- tax_STB_all_tidy_nmf@fit@H
+          }
+          province_cluster <- rep(NA, ncol(H))
+          for (i in 1:ncol(H)) {
+            province_cluster[i] <- which(H[,i]==max(H[,i]))
+          }
+          cluster_tax_STB_all <- data.frame(Province=colnames(STB),province_cluster)
+          cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
+        } else if (input$TotalRatio == "Staff Ratio") {
+          if (input$NumCluster == "2") {
+            k=2
+            tax_STB_all_tidy_nmf <- nmf(STB_ratio, rank = k)
+            W <- tax_STB_all_tidy_nmf@fit@W
+            H <- tax_STB_all_tidy_nmf@fit@H
+          } else if (input$NumCluster == "3") {
+            k=3
+            tax_STB_all_tidy_nmf <- nmf(STB_ratio, rank = k)
+            W <- tax_STB_all_tidy_nmf@fit@W
+            H <- tax_STB_all_tidy_nmf@fit@H
+          } else if (input$NumCluster == "4") {
+            k=4
+            tax_STB_all_tidy_nmf <- nmf(STB_ratio, rank = k)
+            W <- tax_STB_all_tidy_nmf@fit@W
+            H <- tax_STB_all_tidy_nmf@fit@H
+          }
+          province_cluster <- rep(NA, ncol(H))
+          for (i in 1:ncol(H)) {
+            province_cluster[i] <- which(H[,i]==max(H[,i]))
+          }
+          cluster_tax_STB_all <- data.frame(Province=colnames(STB_ratio),province_cluster)
+          cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
+        }
       map_cluster <- cnmap %>% 
         plyr::join(cluster_tax_STB_all, by = "Province") 
       map_cluster %>%

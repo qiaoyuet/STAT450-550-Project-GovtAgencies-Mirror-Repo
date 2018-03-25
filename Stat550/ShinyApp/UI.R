@@ -14,8 +14,8 @@ ui <- fluidPage(
                br(),br(),
                sliderInput("yearInput", "Year", min = 2000, max = 2007, c(2000, 2007)),
                br(),
-               radioButtons("TotalRatio", "What to cluster?", choices = c("Total Number of Stuff", "Staff Ratio"),
-                            selected = "Total Number of Stuff"),
+               radioButtons("TotalRatio", "What to cluster?", choices = c("Total Number of Staff", "Staff Ratio"),
+                            selected = "Total Number of Staff"),
                br(),
                radioButtons("STBLTB", "STB or LTB?", choices = c("STB", "LTB"), selected = "LTB"),
                br(),
@@ -37,7 +37,10 @@ ui <- fluidPage(
   mainPanel(tabsetPanel(
     tabPanel("Map of China",
              br(),
-             downloadLink('MapDownload', 'Download the map here'),
+             plotOutput("MapPlot")),
+    tabPanel("Results Table",
              br(),
-             plotOutput("MapPlot"))
-)))
+             downloadLink('DataDownload', 'Download the results table here'),
+             br(),
+             DT::dataTableOutput("table_head"))))
+)
