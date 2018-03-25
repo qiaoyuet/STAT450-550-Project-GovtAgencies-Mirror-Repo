@@ -37,10 +37,7 @@ ui <- fluidPage(
   mainPanel(tabsetPanel(
     tabPanel("Map of China",
              br(),
-             plotOutput("MapPlot")),
-    tabPanel("Results Table",
+             downloadLink('MapDownload', 'Download the map here'),
              br(),
-             downloadLink('DataDownload', 'Download the results table here'),
-             br(),
-             DT::dataTableOutput("table_head"))))
-)
+             plotOutput("MapPlot"))
+)))

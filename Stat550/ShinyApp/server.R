@@ -96,15 +96,11 @@ server <- function(input, output){
     }
 
   })
-  
-  
-
-#  filtered_pro <- reactive()
-#  output$num_results <- renderText({ 
-#    n<-nrow()
-#    paste("We filtered out",n,"provinces")
-#  })
-#  output$MapPlot <- renderPlot()
-#  output$table_head <- DT::renderDataTable()
-#  output$DataDownload <- downloadHandler()
+#  output$MapDownload<-downloadHandler(
+#    filename = function() {
+#      paste('colored map.pdf')
+#    },
+#    content = function(file) {
+#      write.pdf()
+#    })
 }
