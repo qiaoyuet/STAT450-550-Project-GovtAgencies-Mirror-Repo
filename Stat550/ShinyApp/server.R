@@ -96,8 +96,23 @@ server <- function(input, output){
         ggplot(aes(x = long, y = lat, group = group, fill = province_cluster)) +
         geom_polygon(color = "grey")
     }
-
   })
+#  output$num_results <- renderText({
+#    if (input$STBLTB == "LTB") {
+#      if (input$NumCluster == "2") {
+ #       paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2")
+  #    }
+   #   else if (input$NumCluster == "3") {}
+    #  else if (input$NumCluster == "4") {}
+    #}else if (input$STBLTB == "STB"){
+     # if (input$NumCluster == "2") {
+      #  paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2")
+      #}
+      #else if (input$NumCluster == "3") {}
+      #else if (input$NumCluster == "4") {}
+    #}
+  #})
+  
 #  output$MapDownload<-downloadHandler(
 #    filename = function() {
 #      paste('colored map.pdf')
