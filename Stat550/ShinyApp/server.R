@@ -23,10 +23,12 @@ levels(cnmap$Province)[levels(cnmap$Province)=="Inner Mongolia"] <- "Inner.Mongo
 STB <- STB[complete.cases(STB), ]
 LTB <- LTB[complete.cases(LTB), ]
 cnmap <- cnmap[complete.cases(cnmap), ]
+LTB$Hebei <- as.numeric(as.character(LTB$Hebei))
+LTB$Hebei[2] <- 21520
 #rownames(STB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
 #rownames(LTB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
-STB_ratio <- read.csv("tax_STB_ratio_tidy.csv")
-LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv")
+#STB_ratio <- read.csv("tax_STB_ratio_tidy.csv")
+#LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv")
 
 
 server <- function(input, output){
