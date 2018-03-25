@@ -201,8 +201,7 @@ server <- function(input, output){
           ggplot(map_cluster())+ aes(x = long, y = lat, group = group, fill = province_cluster)   +
           geom_polygon(color = "grey") +
           scale_fill_brewer(name="Province Cluster",
-                            palette="Spectral",
-                            labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
+                            palette="Spectral") +
           labs(x = "Longitude",
                y = "Latitude") +
           ggtitle('Clustering Map for Chinese Government Agency')
