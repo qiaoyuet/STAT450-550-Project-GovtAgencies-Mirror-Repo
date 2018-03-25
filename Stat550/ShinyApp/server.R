@@ -9,12 +9,12 @@ library(NMF)
 
 #STB <- read.csv("./Data/nmf_data/tax_LTB_all_tidy.csv")
 #LTB <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv")
-LTB <- read.csv("tax_LTB_all_tidy.csv")
-STB <- read.csv("tax_STB_all_tidy.csv")
-STB <- STB[,-c(1,31,29)]
-LTB <- LTB[,-1]
+LTB <- read.csv("./Stat550/ShinyApp/tax_LTB_all_tidy.csv") %>% column_to_rownames("X")
+STB <- read.csv("./Stat550/ShinyApp/tax_STB_all_tidy.csv") %>% column_to_rownames("X")
+STB <- STB[,-c(29,31)]
+
 #cnmap <- read.csv("./Data/CHN_adm1_data/cnmapdf.csv") %>% column_to_rownames("X")
-cnmap <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
+cnmap <- read.csv("./Stat550/ShinyApp/cnmapdf.csv") %>% column_to_rownames("X")
 colnames(cnmap)[8] <- "Province"
 levels(cnmap$Province)[levels(cnmap$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
 #LTB$Chongqing[1] <- min(LTB$Chongqing, na.rm = T)
@@ -27,61 +27,90 @@ LTB$Hebei <- as.numeric(as.character(LTB$Hebei))
 LTB$Hebei[2] <- 21520
 #rownames(STB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
 #rownames(LTB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
-STB_ratio <- read.csv("tax_STB_ratio_tidy.csv")
-LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv")
+STB_ratio <- read.csv("./Stat550/ShinyApp/tax_STB_ratio_tidy.csv") %>% column_to_rownames("X")
+LTB_ratio <- read.csv("./Stat550/ShinyApp/tax_LTB_ratio_tidy.csv") %>% column_to_rownames("X")
 
 
 server <- function(input, output){
   map_cluster <- reactive({
     
     if (input$STBLTB == "LTB") {
-      
       if (input$TotalRatio == "Total Number of Staff") {
         if (input$NumCluster == "2") {
           k=2
-          tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
-          W <- tax_LTB_all_tidy_nmf@fit@W
-          H <- tax_LTB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_LTB_year_tidy <- LTB %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
+          W <- tax_LTB_year_tidy_nmf@fit@W
+          H <- tax_LTB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "3") {
           k=3
-          tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
-          W <- tax_LTB_all_tidy_nmf@fit@W
-          H <- tax_LTB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_LTB_year_tidy <- LTB %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
+          W <- tax_LTB_year_tidy_nmf@fit@W
+          H <- tax_LTB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "4") {
           k=4
-          tax_LTB_all_tidy_nmf <- nmf(LTB, rank = k)
-          W <- tax_LTB_all_tidy_nmf@fit@W
-          H <- tax_LTB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_LTB_year_tidy <- LTB %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
+          W <- tax_LTB_year_tidy_nmf@fit@W
+          H <- tax_LTB_year_tidy_nmf@fit@H
         }
         province_cluster <- rep(NA, ncol(H))
         for (i in 1:ncol(H)) {
           province_cluster[i] <- which(H[,i]==max(H[,i]))
         }
-        cluster_tax_LTB_all <- data.frame(Province=colnames(LTB),province_cluster)
+        cluster_tax_LTB_all <- data.frame(Province=colnames(tax_LTB_year_tidy),province_cluster)
         cluster_tax_LTB_all$province_cluster <- as.factor(cluster_tax_LTB_all$province_cluster)
         
       } else if (input$TotalRatio == "Staff Ratio") {
         if (input$NumCluster == "2") {
           k=2
-          tax_LTB_all_tidy_nmf <- nmf(LTB_ratio, rank = k)
-          W <- tax_LTB_all_tidy_nmf@fit@W
-          H <- tax_LTB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_LTB_year_tidy <- LTB_ratio %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
+          W <- tax_LTB_year_tidy_nmf@fit@W
+          H <- tax_LTB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "3") {
           k=3
-          tax_LTB_all_tidy_nmf <- nmf(LTB_ratio, rank = k)
-          W <- tax_LTB_all_tidy_nmf@fit@W
-          H <- tax_LTB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_LTB_year_tidy <- LTB_ratio %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
+          W <- tax_LTB_year_tidy_nmf@fit@W
+          H <- tax_LTB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "4") {
           k=4
-          tax_LTB_all_tidy_nmf <- nmf(LTB_ratio, rank = k)
-          W <- tax_LTB_all_tidy_nmf@fit@W
-          H <- tax_LTB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_LTB_year_tidy <- LTB_ratio %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
+          W <- tax_LTB_year_tidy_nmf@fit@W
+          H <- tax_LTB_year_tidy_nmf@fit@H
         }
         province_cluster <- rep(NA, ncol(H))
         for (i in 1:ncol(H)) {
           province_cluster[i] <- which(H[,i]==max(H[,i]))
         }
-        cluster_tax_LTB_all <- data.frame(Province=colnames(LTB_ratio),province_cluster)
+        cluster_tax_LTB_all <- data.frame(Province=colnames(tax_LTB_year_tidy_nmf),province_cluster)
         cluster_tax_LTB_all$province_cluster <- as.factor(cluster_tax_LTB_all$province_cluster)
       }
       cnmap %>% plyr::join(cluster_tax_LTB_all, by = "Province")
@@ -91,56 +120,93 @@ server <- function(input, output){
       if (input$TotalRatio == "Total Number of Staff") {
         if (input$NumCluster == "2") {
           k=2
-          tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
-          W <- tax_STB_all_tidy_nmf@fit@W
-          H <- tax_STB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_STB_year_tidy <- STB %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
+          W <- tax_STB_yearl_tidy_nmf@fit@W
+          H <- tax_STB_yearl_tidy_nmf@fit@H
         } else if (input$NumCluster == "3") {
           k=3
-          tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
-          W <- tax_STB_all_tidy_nmf@fit@W
-          H <- tax_STB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_STB_year_tidy <- STB %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
+          W <- tax_STB_year_tidy_nmf@fit@W
+          H <- tax_STB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "4") {
           k=4
-          tax_STB_all_tidy_nmf <- nmf(STB, rank = k)
-          W <- tax_STB_all_tidy_nmf@fit@W
-          H <- tax_STB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_STB_year_tidy <- STB %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
+          W <- tax_STB_year_tidy_nmf@fit@W
+          H <- tax_STB_year_tidy_nmf@fit@H
         }
         province_cluster <- rep(NA, ncol(H))
         for (i in 1:ncol(H)) {
           province_cluster[i] <- which(H[,i]==max(H[,i]))
         }
-        cluster_tax_STB_all <- data.frame(Province=colnames(STB),province_cluster)
+        cluster_tax_STB_all <- data.frame(Province=colnames(tax_STB_year_tidy),province_cluster)
         cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
       } else if (input$TotalRatio == "Staff Ratio") {
         if (input$NumCluster == "2") {
           k=2
-          tax_STB_all_tidy_nmf <- nmf(STB_ratio, rank = k)
-          W <- tax_STB_all_tidy_nmf@fit@W
-          H <- tax_STB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_STB_year_tidy <- STB_ratio %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
+          W <- tax_STB_year_tidy_nmf@fit@W
+          H <- tax_STB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "3") {
           k=3
-          tax_STB_all_tidy_nmf <- nmf(STB_ratio, rank = k)
-          W <- tax_STB_all_tidy_nmf@fit@W
-          H <- tax_STB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_STB_year_tidy <- STB_ratio %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
+          W <- tax_STB_year_tidy_nmf@fit@W
+          H <- tax_STB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "4") {
           k=4
-          tax_STB_all_tidy_nmf <- nmf(STB_ratio, rank = k)
-          W <- tax_STB_all_tidy_nmf@fit@W
-          H <- tax_STB_all_tidy_nmf@fit@H
+          YearSelect <- c(input$yearInput[1]:input$yearInput[2])
+          tax_STB_year_tidy <- STB_ratio %>% 
+              rownames_to_column('Year') %>% 
+              filter(Year %in% YearSelect) %>%
+              column_to_rownames('Year')
+          tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
+          W <- tax_STB_year_tidy_nmf@fit@W
+          H <- tax_STB_year_tidy_nmf@fit@H
         }
         province_cluster <- rep(NA, ncol(H))
         for (i in 1:ncol(H)) {
           province_cluster[i] <- which(H[,i]==max(H[,i]))
         }
-        cluster_tax_STB_all <- data.frame(Province=colnames(STB_ratio),province_cluster)
+        cluster_tax_STB_all <- data.frame(Province=colnames(tax_STB_year_tidy),province_cluster)
         cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
       }
       cnmap %>% plyr::join(cluster_tax_STB_all, by = "Province") 
     }
   })
   output$MapPlot <- renderPlot({
-      ggplot(map_cluster()) +aes(x = long, y = lat, group = group, fill = province_cluster)+
-      geom_polygon(color = "grey")
+      map_cluster                                                             %>%
+          ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
+          geom_polygon(color = "grey") +
+          scale_fill_brewer(name="Province Cluster",
+                            palette="Spectral",
+                            labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
+          labs(x = "Longitude",
+               y = "Latitude") +
+          ggtitle('Clustering Map for Chinese Government Agency')
   })
 #  output$num_results <- renderText({
 #    if (input$STBLTB == "LTB") {
