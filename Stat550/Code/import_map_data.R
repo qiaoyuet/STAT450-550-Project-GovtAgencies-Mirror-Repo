@@ -21,7 +21,7 @@ cnmap@data <- na.omit(cnmap@data)
 # and key map plotting info:
 
 prov_cn <- unique(cnmap$NAME)
-prov_en <- c("Heilongjiang", "Inner Mongolia", "Xinjiang", "Jilin",
+prov_en <- c("Heilongjiang", "Inner.Mongolia", "Xinjiang", "Jilin",
              "Liaoning", "Gansu", "Hebei", "Beijing", "Shanxi",
              "Tianjin", "Shaanxi", "Ningxia", "Qinghai", "Shandong",
              "Tibet", "Henan", "Jiangsu", "Anhui", "Sichuan", "Hubei",

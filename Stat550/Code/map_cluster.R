@@ -28,8 +28,15 @@ map_cluster <- cnmap                                                  %>%
 
 pdf('Stat550/Figure/map_cluster_tax_LTB_all.pdf',width = 8,height = 6)
 map_cluster                                                             %>%
-  ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
-  geom_polygon(color = "grey")
+    ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
+    geom_polygon(color = "grey") +
+    scale_fill_brewer(palette="Spectral",
+                      name="Province Cluster",
+                      labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
+    #scale_fill_manual(values=c("#CC6666", "#9999CC", "#66CC99", "grey"))
+    #scale_fill_brewer()+
+    labs(x = "Longitude",
+         y = "Latitude")
 dev.off()
 
 # Cluster for STB
@@ -50,5 +57,13 @@ map_cluster <- cnmap                                                  %>%
 pdf('Stat550/Figure/map_cluster_tax_STB_all.pdf',width = 8,height = 6)
 map_cluster                                                             %>%
     ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
-    geom_polygon(color = "grey")
+    geom_polygon(color = "grey") +
+    scale_fill_brewer(name="Province Cluster",
+                      palette="Spectral",
+                      labels=c("Cluster 1", "Cluster 2", "Cluster 3", "No Staffing Number")) +
+    #scale_fill_manual(values=c("#CC6666", "#9999CC", "#66CC99", "grey"))
+    #scale_fill_brewer()+
+    labs(x = "Longitude",
+         y = "Latitude")
+
 dev.off()
