@@ -23,6 +23,8 @@ levels(cnmap$Province)[levels(cnmap$Province)=="Inner Mongolia"] <- "Inner.Mongo
 STB <- STB[complete.cases(STB), ]
 LTB <- LTB[complete.cases(LTB), ]
 cnmap <- cnmap[complete.cases(cnmap), ]
+#rownames(STB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
+#rownames(LTB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
 
 server <- function(input, output){
   
@@ -83,10 +85,10 @@ server <- function(input, output){
       cluster_tax_STB_all <- data.frame(Province=colnames(STB),province_cluster)
       cluster_tax_STB_all$province_cluster <- as.factor(cluster_tax_STB_all$province_cluster)
       
-      map_cluster <- cnmap                                                  %>% 
+      map_cluster <- cnmap %>% 
         plyr::join(cluster_tax_STB_all, by = "Province") 
-      map_cluster                                                             %>%
-        ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
+      map_cluster %>%
+        ggplot(aes(x = long, y = lat, group = group, fill = province_cluster)) +
         geom_polygon(color = "grey")
     }
 
