@@ -9,12 +9,12 @@ library(NMF)
 
 #STB <- read.csv("./Data/nmf_data/tax_LTB_all_tidy.csv")
 #LTB <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv")
-LTB <- read.csv("./Stat550/ShinyApp/tax_LTB_all_tidy.csv") %>% column_to_rownames("X")
-STB <- read.csv("./Stat550/ShinyApp/tax_STB_all_tidy.csv") %>% column_to_rownames("X")
+LTB <- read.csv("tax_LTB_all_tidy.csv") %>% column_to_rownames("X")
+STB <- read.csv("tax_STB_all_tidy.csv") %>% column_to_rownames("X")
 STB <- STB[,-c(29,31)]
 
 #cnmap <- read.csv("./Data/CHN_adm1_data/cnmapdf.csv") %>% column_to_rownames("X")
-cnmap <- read.csv("./Stat550/ShinyApp/cnmapdf.csv") %>% column_to_rownames("X")
+cnmap <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
 colnames(cnmap)[8] <- "Province"
 levels(cnmap$Province)[levels(cnmap$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
 #LTB$Chongqing[1] <- min(LTB$Chongqing, na.rm = T)
@@ -27,8 +27,8 @@ LTB$Hebei <- as.numeric(as.character(LTB$Hebei))
 LTB$Hebei[2] <- 21520
 #rownames(STB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
 #rownames(LTB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
-STB_ratio <- read.csv("./Stat550/ShinyApp/tax_STB_ratio_tidy.csv") %>% column_to_rownames("X")
-LTB_ratio <- read.csv("./Stat550/ShinyApp/tax_LTB_ratio_tidy.csv") %>% column_to_rownames("X")
+STB_ratio <- read.csv("tax_STB_ratio_tidy.csv") %>% column_to_rownames("X")
+LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv") %>% column_to_rownames("X")
 
 
 server <- function(input, output){
@@ -198,8 +198,7 @@ server <- function(input, output){
     }
   })
   output$MapPlot <- renderPlot({
-      map_cluster                                                             %>%
-          ggplot(aes(x = long, y = lat, group = group, fill = province_cluster))   +
+          ggplot(map_cluster())+ aes(x = long, y = lat, group = group, fill = province_cluster)   +
           geom_polygon(color = "grey") +
           scale_fill_brewer(name="Province Cluster",
                             palette="Spectral",
@@ -207,31 +206,23 @@ server <- function(input, output){
           labs(x = "Longitude",
                y = "Latitude") +
           ggtitle('Clustering Map for Chinese Government Agency')
+      
   })
-  
-  output$num_results <- renderText({
-    map_cluster <- map_cluster()
-    map_cluster <- aggregate(x = map_cluster$long,FUN=sum,by = list(map_cluster$province_cluster,map_cluster$Province))
-    freqt <- as.data.frame(summary(map_cluster$Group.1))
-    names(freqt)[1] <- "freq"
-    if (length(levels(map_cluster$Group.1))==2){
-      n1 <- freqt$freq[1]
-      n2 <- freqt$freq[2]
-      paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2.")
-    }else if (length(levels(map_cluster$Group.1))==3){
-      n1 <- freqt$freq[1]
-      n2 <- freqt$freq[2]
-      n3 <- freqt$freq[3]
-      paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2, ",n3," provinces in cluster 3.")
-    }else if (length(levels(map_cluster$Group.1))==4){
-      n1 <- freqt$freq[1]
-      n2 <- freqt$freq[2]
-      n3 <- freqt$freq[3]
-      n4 <- freqt$freq[4]
-      paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2, ",n3," provinces in cluster 3, ",
-            n4," provinces in cluster 4.")
-    }
-  })
+#  output$num_results <- renderText({
+#    if (input$STBLTB == "LTB") {
+#      if (input$NumCluster == "2") {
+ #       paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2")
+  #    }
+   #   else if (input$NumCluster == "3") {}
+    #  else if (input$NumCluster == "4") {}
+    #}else if (input$STBLTB == "STB"){
+     # if (input$NumCluster == "2") {
+      #  paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2")
+      #}
+      #else if (input$NumCluster == "3") {}
+      #else if (input$NumCluster == "4") {}
+    #}
+  #})
   
 #  output$MapDownload<-downloadHandler(
 #    filename = function() {
