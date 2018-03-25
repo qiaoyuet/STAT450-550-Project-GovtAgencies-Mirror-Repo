@@ -12,13 +12,10 @@ ui <- fluidPage(
   hr(),
   sidebarPanel(p(strong("Filters")),
                br(),br(),
-<<<<<<< HEAD
                sliderInput("yearInput", "Year", min = 2000, max = 2007, c(2000, 2007)),
                br(),
-=======
                #sliderInput("yearInput", "Year", min = 2000, max = 2007, c(2000, 2007)),
                #br(),
->>>>>>> ea1039982f07c16c9e05a8ebb51049ff6cd4a7ab
                radioButtons("TotalRatio", "What to cluster?", choices = c("Total Number of Staff", "Staff Ratio"),
                             selected = "Total Number of Staff"),
                br(),
