@@ -9,10 +9,10 @@ library(NMF)
 
 #STB <- read.csv("./Data/nmf_data/tax_LTB_all_tidy.csv")
 #LTB <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv")
-STB <- read.csv("tax_LTB_all_tidy.csv")
-LTB <- read.csv("tax_STB_all_tidy.csv")
-LTB <- LTB[,-c(1,31,29)]
-STB <- STB[,-1]
+LTB <- read.csv("tax_LTB_all_tidy.csv")
+STB <- read.csv("tax_STB_all_tidy.csv")
+STB <- STB[,-c(1,31,29)]
+LTB <- LTB[,-1]
 #cnmap <- read.csv("./Data/CHN_adm1_data/cnmapdf.csv") %>% column_to_rownames("X")
 cnmap <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
 colnames(cnmap)[8] <- "Province"
@@ -25,6 +25,9 @@ LTB <- LTB[complete.cases(LTB), ]
 cnmap <- cnmap[complete.cases(cnmap), ]
 #rownames(STB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
 #rownames(LTB) <- c("2000","2001","2002","2003","2004","2005","2006","2007")
+STB_ratio <- read.csv("tax_STB_ratio_tidy.csv")
+LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv")
+
 
 server <- function(input, output){
   
