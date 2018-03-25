@@ -33,16 +33,12 @@ ui <- fluidPage(
                # br(),
                # selectInput("typeInUnit", "Work Unit",choices = c("Admin", "Business","DAE Admin","DAE NonAdmin","Tax"),
                #             selected = NULL,multiple = TRUE),
-               submitButton("Search"),
-               textOutput("num_results")),
+               submitButton("Search")),
   
   mainPanel(tabsetPanel(
     tabPanel("Map of China",
              br(),
-             plotOutput("MapPlot")),
-    tabPanel("Results Table",
-             br(),
-             downloadLink('DataDownload', 'Download the results table here'),
-             br(),
-             DT::dataTableOutput("table_head"))))
+             plotOutput("MapPlot"),
+             br(),br(),
+             textOutput("num_results"))))
 )
