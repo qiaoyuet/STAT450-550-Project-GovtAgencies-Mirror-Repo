@@ -44,7 +44,7 @@ rownames(final) <- allYears
 
 write.csv(final, file="./Data/TotalStaff_imputed.csv")
 
-dat <- read.csv("./Data/TotalStaff_imputed.csv")
+dat <- read.csv("TotalStaff_imputed.csv")
 dat_mat <- data.matrix(dat)[,-1]
 
 k=3

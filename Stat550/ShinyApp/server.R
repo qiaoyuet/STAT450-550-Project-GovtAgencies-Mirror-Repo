@@ -11,13 +11,18 @@ library(NMF)
 #LTB <- read.csv("./Data/nmf_data/tax_STB_all_tidy.csv")
 STB <- read.csv("tax_LTB_all_tidy.csv")
 LTB <- read.csv("tax_STB_all_tidy.csv")
-LTB <- LTB[,-31]
+LTB <- LTB[,-c(1,31,29)]
+STB <- STB[,-1]
 #cnmap <- read.csv("./Data/CHN_adm1_data/cnmapdf.csv") %>% column_to_rownames("X")
 cnmap <- read.csv("cnmapdf.csv") %>% column_to_rownames("X")
 colnames(cnmap)[8] <- "Province"
-LTB$Chongqing[1] <- min(LTB$Chongqing, na.rm = T)
-STB$Chongqing[9] <- min(STB$Chongqing, na.rm = T)
+levels(cnmap$Province)[levels(cnmap$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
+#LTB$Chongqing[1] <- min(LTB$Chongqing, na.rm = T)
+#STB$Chongqing[9] <- min(STB$Chongqing, na.rm = T)
 #STB <- select(STB,-Yangzhou)
+STB <- STB[complete.cases(STB), ]
+LTB <- LTB[complete.cases(LTB), ]
+cnmap <- cnmap[complete.cases(cnmap), ]
 
 server <- function(input, output){
   
