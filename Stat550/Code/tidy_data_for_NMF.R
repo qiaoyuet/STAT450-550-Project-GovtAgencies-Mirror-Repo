@@ -59,7 +59,6 @@ rownames(tax_LTB_ratio_tidy) <- allYears
 write.csv(tax_LTB_ratio_tidy, file="tax_LTB_ratio_tidy.csv")
 
 
-
 tax_data_STB <- read.csv("AgeSTBForR.csv")
 exp_var <- read.csv("econdemographic.csv")
 colnames(tax_data_STB)[3] <- 'Number.of.Staff'

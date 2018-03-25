@@ -39,5 +39,6 @@ id_prov <- cnmap@data                                               %>%
 # use plyr package in a more efficient way
 cnmapdf <- plyr::join(fortify(cnmap), id_prov, by = "id")
 cnmapdf <- cnmapdf[,-8]
+write.csv(cnmapdf, file="./Data/CHN_adm1_data/cnmapdf.csv")
 write.csv(cnmapdf, file="./Stat550/ShinyApp/cnmapdf.csv")
 # head(cnmapdf)
