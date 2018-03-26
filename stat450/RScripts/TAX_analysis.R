@@ -1,7 +1,7 @@
 setwd("C:/Users/Castaire/Desktop/tax_analysis_attempt")
 library("fda")
 library("funFEM")
-library("Funclustering")
+#library("Funclustering")
 
 TAX_Cluster <- function(age.lvl=NA, edu.lvl=NA, k){
   setwd("C:/Users/Castaire/Desktop/tax_analysis_attempt/TAX_Data")
