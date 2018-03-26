@@ -127,8 +127,8 @@ server <- function(input, output){
             filter(Year %in% YearSelect) %>%
             column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
-          W <- tax_STB_yearl_tidy_nmf@fit@W
-          H <- tax_STB_yearl_tidy_nmf@fit@H
+          W <- tax_STB_year_tidy_nmf@fit@W
+          H <- tax_STB_year_tidy_nmf@fit@H
         } else if (input$NumCluster == "3") {
           k=3
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
