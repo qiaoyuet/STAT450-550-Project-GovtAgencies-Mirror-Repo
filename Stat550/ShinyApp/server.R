@@ -40,9 +40,9 @@ server <- function(input, output){
           k=2
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_LTB_year_tidy <- LTB %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
           W <- tax_LTB_year_tidy_nmf@fit@W
           H <- tax_LTB_year_tidy_nmf@fit@H
@@ -50,9 +50,9 @@ server <- function(input, output){
           k=3
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_LTB_year_tidy <- LTB %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
           W <- tax_LTB_year_tidy_nmf@fit@W
           H <- tax_LTB_year_tidy_nmf@fit@H
@@ -60,9 +60,9 @@ server <- function(input, output){
           k=4
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_LTB_year_tidy <- LTB %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
           W <- tax_LTB_year_tidy_nmf@fit@W
           H <- tax_LTB_year_tidy_nmf@fit@H
@@ -79,9 +79,9 @@ server <- function(input, output){
           k=2
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_LTB_year_tidy <- LTB_ratio %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
           W <- tax_LTB_year_tidy_nmf@fit@W
           H <- tax_LTB_year_tidy_nmf@fit@H
@@ -89,9 +89,9 @@ server <- function(input, output){
           k=3
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_LTB_year_tidy <- LTB_ratio %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
           W <- tax_LTB_year_tidy_nmf@fit@W
           H <- tax_LTB_year_tidy_nmf@fit@H
@@ -99,9 +99,9 @@ server <- function(input, output){
           k=4
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_LTB_year_tidy <- LTB_ratio %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_LTB_year_tidy_nmf <- nmf(tax_LTB_year_tidy, rank = k)
           W <- tax_LTB_year_tidy_nmf@fit@W
           H <- tax_LTB_year_tidy_nmf@fit@H
@@ -122,9 +122,9 @@ server <- function(input, output){
           k=2
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_STB_year_tidy <- STB %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
           W <- tax_STB_yearl_tidy_nmf@fit@W
           H <- tax_STB_yearl_tidy_nmf@fit@H
@@ -132,9 +132,9 @@ server <- function(input, output){
           k=3
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_STB_year_tidy <- STB %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
           W <- tax_STB_year_tidy_nmf@fit@W
           H <- tax_STB_year_tidy_nmf@fit@H
@@ -142,9 +142,9 @@ server <- function(input, output){
           k=4
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_STB_year_tidy <- STB %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
           W <- tax_STB_year_tidy_nmf@fit@W
           H <- tax_STB_year_tidy_nmf@fit@H
@@ -160,9 +160,9 @@ server <- function(input, output){
           k=2
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_STB_year_tidy <- STB_ratio %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
           W <- tax_STB_year_tidy_nmf@fit@W
           H <- tax_STB_year_tidy_nmf@fit@H
@@ -170,9 +170,9 @@ server <- function(input, output){
           k=3
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_STB_year_tidy <- STB_ratio %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
           W <- tax_STB_year_tidy_nmf@fit@W
           H <- tax_STB_year_tidy_nmf@fit@H
@@ -180,9 +180,9 @@ server <- function(input, output){
           k=4
           YearSelect <- c(input$yearInput[1]:input$yearInput[2])
           tax_STB_year_tidy <- STB_ratio %>% 
-              rownames_to_column('Year') %>% 
-              filter(Year %in% YearSelect) %>%
-              column_to_rownames('Year')
+            rownames_to_column('Year') %>% 
+            filter(Year %in% YearSelect) %>%
+            column_to_rownames('Year')
           tax_STB_year_tidy_nmf <- nmf(tax_STB_year_tidy, rank = k)
           W <- tax_STB_year_tidy_nmf@fit@W
           H <- tax_STB_year_tidy_nmf@fit@H
@@ -197,37 +197,12 @@ server <- function(input, output){
       cnmap %>% plyr::join(cluster_tax_STB_all, by = "Province") 
     }
   })
-  output$MapPlot <- renderPlot({
-          ggplot(map_cluster())+ aes(x = long, y = lat, group = group, fill = province_cluster)   +
-          geom_polygon(color = "grey") +
-          scale_fill_brewer(name="Province Cluster",
-                            palette="Spectral") +
-          labs(x = "Longitude",
-               y = "Latitude") +
-          ggtitle('Clustering Map for Chinese Government Agency')
-      
+  MapInput <- reactive({
+    ggplot(map_cluster())+ aes(x = long, y = lat, group = group, fill = province_cluster)   +
+      geom_polygon(color = "grey") +
+      scale_fill_brewer(name="Province Cluster",
+                        palette="Spectral") +
+      labs(x = "Longitude",
+           y = "Latitude") +
+      ggtitle('Clustering Map for Chinese Government Agency')
   })
-#  output$num_results <- renderText({
-#    if (input$STBLTB == "LTB") {
-#      if (input$NumCluster == "2") {
- #       paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2")
-  #    }
-   #   else if (input$NumCluster == "3") {}
-    #  else if (input$NumCluster == "4") {}
-    #}else if (input$STBLTB == "STB"){
-     # if (input$NumCluster == "2") {
-      #  paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2")
-      #}
-      #else if (input$NumCluster == "3") {}
-      #else if (input$NumCluster == "4") {}
-    #}
-  #})
-  
-#  output$MapDownload<-downloadHandler(
-#    filename = function() {
-#      paste('colored map.pdf')
-#    },
-#    content = function(file) {
-#      write.pdf()
-#    })
-}
