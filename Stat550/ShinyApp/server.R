@@ -221,11 +221,13 @@ server <- function(input, output){
       n1 <- freqt$freq[1]
       n2 <- freqt$freq[2]
       paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2.")
+
     }else if (length(levels(map_cluster$Group.1))==3){
       n1 <- freqt$freq[1]
       n2 <- freqt$freq[2]
       n3 <- freqt$freq[3]
-      paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2, ",n3," provinces in cluster 3.")
+      paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2, ",n3, " provinces in cluster 3.")
+
     }else if (length(levels(map_cluster$Group.1))==4){
       n1 <- freqt$freq[1]
       n2 <- freqt$freq[2]
@@ -233,6 +235,61 @@ server <- function(input, output){
       n4 <- freqt$freq[4]
       paste("We found ",n1," provinces in cluster 1, ",n2," provinces in cluster 2, ",n3," provinces in cluster 3, ",
             n4," provinces in cluster 4.")
+
+    }
+    
+  })
+  
+  output$num_results2 <- renderText({
+    map_cluster <- map_cluster()
+    map_cluster <- aggregate(x = map_cluster$long,FUN=sum,by = list(map_cluster$province_cluster,map_cluster$Province))
+    if (length(levels(map_cluster$Group.1))==2){
+      map_cluster$Group.1 <- as.character(map_cluster$Group.1)
+      map_cluster$Group.2 <- as.character(map_cluster$Group.2)
+      c1 <- map_cluster$Group.2[which(map_cluster$Group.1==1)]
+      c2 <- map_cluster$Group.2[which(map_cluster$Group.1==2)]
+      tmp1 <- paste(c1, collapse = ",")
+      tmp2 <- paste(c2, collapse = ",")
+      p1 <- paste("Cluster 1 has the following provinces: ",tmp1)
+      p2 <- paste("Cluster 2 has the following provinces: ",tmp2)
+      str_c(p1, p2, sep = "\n")
+      # paste("Cluster 1 has the following provinces: ",tmp1,
+      #       "Cluster 2 has the following provinces: ",tmp2)
+      
+    }else if (length(levels(map_cluster$Group.1))==3){
+      map_cluster$Group.1 <- as.character(map_cluster$Group.1)
+      map_cluster$Group.2 <- as.character(map_cluster$Group.2)
+      c1 <- map_cluster$Group.2[which(map_cluster$Group.1==1)]
+      c2 <- map_cluster$Group.2[which(map_cluster$Group.1==2)]
+      c3 <- map_cluster$Group.2[which(map_cluster$Group.1==3)]
+      tmp1 <- paste(c1, collapse = ",")
+      tmp2 <- paste(c2, collapse = ",")
+      tmp3 <- paste(c3, collapse = ",")
+      p1 <- paste("Cluster 1 has the following provinces: ",tmp1)
+      p2 <- paste("Cluster 2 has the following provinces: ",tmp2)
+      p3 <- paste("Cluster 3 has the following provinces: ",tmp3)
+      str_c(p1,p2,p3,sep = "\n")
+      # paste("Cluster 1 has the following provinces: ",tmp1, 
+      #       "Cluster 2 has the following provinces: ",tmp2, 
+      #       "Cluster 3 has the following provinces: ",tmp3, collapse = "\n")
+      
+    }else if (length(levels(map_cluster$Group.1))==4){
+      map_cluster$Group.1 <- as.character(map_cluster$Group.1)
+      map_cluster$Group.2 <- as.character(map_cluster$Group.2)
+      c1 <- map_cluster$Group.2[which(map_cluster$Group.1==1)]
+      c2 <- map_cluster$Group.2[which(map_cluster$Group.1==2)]
+      c3 <- map_cluster$Group.2[which(map_cluster$Group.1==3)]
+      c4 <- map_cluster$Group.2[which(map_cluster$Group.1==4)]
+      tmp1 <- paste(c1, collapse = ",")
+      tmp2 <- paste(c2, collapse = ",")
+      tmp3 <- paste(c3, collapse = ",")
+      tmp4 <- paste(c3, collapse = ",")
+      paste(
+            "Cluster 1 has the following provinces: ",tmp1,
+            "Cluster 2 has the following provinces: ",tmp2,
+            "Cluster 3 has the following provinces: ",tmp3,
+            "Cluster 4 has the following provinces: ",tmp4, collapse = "\n")
+      
     }
     
   })

@@ -39,5 +39,6 @@ ui <- fluidPage(
              br(),
              plotOutput("MapPlot"),
              br(),br(),
-             textOutput("num_results"))))
+             textOutput("num_results"),
+             textOutput("num_results2"))))
 )
