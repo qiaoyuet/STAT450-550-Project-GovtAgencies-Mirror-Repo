@@ -8,10 +8,9 @@ library(shiny)
 # Define UI for the app
 
 ui <- fluidPage(
-  titlePanel(p(strong("GovtAgencies"))),
+  titlePanel(p(strong("STAT450/550 Project: Chinese Government Agencies"))),
   hr(),
-  sidebarPanel(p(strong("Filters")),
-               br(),br(),
+  sidebarPanel(
                sliderInput("yearInput", "Year", min = 2000, max = 2007, c(2000, 2007)),
                br(),
                #sliderInput("yearInput", "Year", min = 2000, max = 2007, c(2000, 2007)),
