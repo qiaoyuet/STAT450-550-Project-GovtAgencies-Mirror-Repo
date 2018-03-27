@@ -40,5 +40,6 @@ ui <- fluidPage(
              plotOutput("MapPlot"),
              br(),br(),
              textOutput("num_results"),
-             verbatimTextOutput("num_results2"))))
+             verbatimTextOutput("num_results2")),
+    tabPanel("ReadMe", textOutput("readme"))))
 )
