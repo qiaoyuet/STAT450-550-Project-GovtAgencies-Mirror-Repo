@@ -31,6 +31,16 @@ STB_ratio <- read.csv("tax_STB_ratio_tidy.csv") %>% column_to_rownames("X")
 LTB_ratio <- read.csv("tax_LTB_ratio_tidy.csv") %>% column_to_rownames("X")
 
 
+tax_data_LTB <- read.csv("AgeLTBForR.csv")
+tax_data_STB <- read.csv("AgeSTBForR.csv")
+colnames(tax_data_LTB)[3] <- 'Number.of.Staff'
+colnames(tax_data_STB)[3] <- 'Number.of.Staff'
+tax_LTB_all <- tax_data_LTB[, c(1:3)]
+tax_STB_all <- tax_data_STB[, c(1:3)]
+levels(tax_LTB_all$Province)[levels(tax_LTB_all$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
+levels(tax_STB_all$Province)[levels(tax_STB_all$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
+
+
 
 server <- function(input, output){
   map_cluster <- reactive({
@@ -296,7 +306,26 @@ server <- function(input, output){
   })
   
   output$readme <- renderUI({
-HTML("This shiny app is designed for the STAT450/550 Project: Chinese Government Agencies. The project investigates the changes of staffing number in the Chinese Tax Bureau over 2000-2007. This shiny app provides a visualization of clusters of chinese provinces with similar patterns in either total staff number or staff number ratio given various choices of filters. The clustering is based on the Non-negative Matrix Factarization (NMF) method. It is important to note that NMF is not a classical clustering method and may not be able to give the exact number of clusters specified. If the actual number of clusters is less than the pre-specified number of clusters, it means the data are not significantly different enough to be seperated into more clusters."
-  )})
+    HTML("This shiny app is designed for the STAT450/550 Project: Chinese Government Agencies. The project investigates the changes of staffing number in the Chinese Tax Bureau over 2000-2007. This shiny app provides a visualization of clusters of chinese provinces with similar patterns in either total staff number or staff number ratio given various choices of filters. The clustering is based on the Non-negative Matrix Factarization (NMF) method. It is important to note that NMF is not a classical clustering method and may not be able to give the exact number of clusters specified. If the actual number of clusters is less than the pre-specified number of clusters, it means the data are not significantly different enough to be seperated into more clusters.")
+    })
+
+  
+  TrendInput <- reactive({
+    if(input$STBLTB == "LTB") {
+      if (input$TotalRatio == "Total Number of Staff") {
+        dat <- map_cluster()
+        tmp <- left_join(tax_LTB_all,dat[,c(8,9)], by="Province")
+          tmp %>% 
+            arrange(Year) %>% 
+            ggplot(aes(x=Year, y=Number.of.Staff, group=Province)) + 
+                geom_path(aes(color=Province)) + 
+                facet_wrap(~province_cluster)
+      }
+    }
+  })
+    
+  output$TrendPlot <- renderPlot({
+    print(TrendInput())
+  })
   
 }
