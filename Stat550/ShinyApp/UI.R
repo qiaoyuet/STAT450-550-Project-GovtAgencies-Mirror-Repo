@@ -41,5 +41,5 @@ ui <- fluidPage(
              br(),br(),
              textOutput("num_results"),
              verbatimTextOutput("num_results2")),
-    tabPanel("ReadMe", textOutput("readme"))))
+    tabPanel("ReadMe", htmlOutput("readme"))))
 )
