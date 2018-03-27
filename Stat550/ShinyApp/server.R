@@ -240,7 +240,7 @@ server <- function(input, output){
     
   })
   
-  output$num_results2 <- renderText({
+  output$num_results2 <- renderPrint({
     map_cluster <- map_cluster()
     map_cluster <- aggregate(x = map_cluster$long,FUN=sum,by = list(map_cluster$province_cluster,map_cluster$Province))
     if (length(levels(map_cluster$Group.1))==2){
@@ -250,11 +250,10 @@ server <- function(input, output){
       c2 <- map_cluster$Group.2[which(map_cluster$Group.1==2)]
       tmp1 <- paste(c1, collapse = ",")
       tmp2 <- paste(c2, collapse = ",")
-      p1 <- paste("Cluster 1 has the following provinces: ",tmp1)
-      p2 <- paste("Cluster 2 has the following provinces: ",tmp2)
-      str_c(p1, p2, sep = "\n")
-      # paste("Cluster 1 has the following provinces: ",tmp1,
-      #       "Cluster 2 has the following provinces: ",tmp2)
+      p1 <- cat("Cluster 1 has the following provinces: ",tmp1, sep = "\n")
+      blank <- cat("-------------------------------------------", sep = "\n")
+      p2 <- cat("Cluster 2 has the following provinces: ",tmp2, sep = "\n")
+      cat(p1, blank,p2, sep = "\n")
       
     }else if (length(levels(map_cluster$Group.1))==3){
       map_cluster$Group.1 <- as.character(map_cluster$Group.1)
@@ -265,13 +264,13 @@ server <- function(input, output){
       tmp1 <- paste(c1, collapse = ",")
       tmp2 <- paste(c2, collapse = ",")
       tmp3 <- paste(c3, collapse = ",")
-      p1 <- paste("Cluster 1 has the following provinces: ",tmp1)
-      p2 <- paste("Cluster 2 has the following provinces: ",tmp2)
-      p3 <- paste("Cluster 3 has the following provinces: ",tmp3)
-      str_c(p1,p2,p3,sep = "\n")
-      # paste("Cluster 1 has the following provinces: ",tmp1, 
-      #       "Cluster 2 has the following provinces: ",tmp2, 
-      #       "Cluster 3 has the following provinces: ",tmp3, collapse = "\n")
+      blank <- "------------------------"
+      p1 <- cat("Cluster 1 has the following provinces: ",tmp1, sep = "\n")
+      blank1 <- cat("-------------------------------------------", sep = "\n")
+      p2 <- cat("Cluster 2 has the following provinces: ",tmp2, sep = "\n")
+      blank2 <- cat("-------------------------------------------", sep = "\n")
+      p3 <- cat("Cluster 3 has the following provinces: ",tmp3, sep = "\n")
+      cat(p1,blank1,p2,blank2,p3,sep = "\n")
       
     }else if (length(levels(map_cluster$Group.1))==4){
       map_cluster$Group.1 <- as.character(map_cluster$Group.1)
@@ -284,23 +283,17 @@ server <- function(input, output){
       tmp2 <- paste(c2, collapse = ",")
       tmp3 <- paste(c3, collapse = ",")
       tmp4 <- paste(c3, collapse = ",")
-      paste(
-            "Cluster 1 has the following provinces: ",tmp1,
-            "Cluster 2 has the following provinces: ",tmp2,
-            "Cluster 3 has the following provinces: ",tmp3,
-            "Cluster 4 has the following provinces: ",tmp4, collapse = "\n")
+      p1 <- cat("Cluster 1 has the following provinces: ",tmp1, sep = "\n")
+      blank1 <- cat("-------------------------------------------", sep = "\n")
+      p2 <- cat("Cluster 2 has the following provinces: ",tmp2, sep = "\n")
+      blank2 <- cat("-------------------------------------------", sep = "\n")
+      p3 <- cat("Cluster 3 has the following provinces: ",tmp3, sep = "\n")
+      blank3 <- cat("-------------------------------------------", sep = "\n")
+      p4 <- cat("Cluster 4 has the following provinces: ",tmp4, sep = "\n")
+      cat(p1,blank1,p2,blank2,p3,blank3,p4,sep = "\n")
       
     }
     
   })
-  
-#  output$MapDownload<-downloadHandler(
-#    filename = function(){paste('colored_map','.png', sep='.')},
-#    content = function(file) {
-#      png(file)
-#      print(MapInput())
-#      dev.off()
-#    }
-#  )
   
 }

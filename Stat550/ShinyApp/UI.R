@@ -40,5 +40,5 @@ ui <- fluidPage(
              plotOutput("MapPlot"),
              br(),br(),
              textOutput("num_results"),
-             textOutput("num_results2"))))
+             verbatimTextOutput("num_results2"))))
 )
