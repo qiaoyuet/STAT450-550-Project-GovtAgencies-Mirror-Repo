@@ -296,7 +296,7 @@ server <- function(input, output){
   })
   
   output$readme <- renderUI({
-HTML("This shiny app is designed for the STAT450/550 Project: Chinese Government Agencies. The project involves investigating the change of staffing number in the Chinese Tax Bureau over 2000-2007. This shiny app provides a visualization of clusters of chinese provinces with similar patterns in either total staff number or staff number ratio given various choices of filters. The clustering is based on the Non-negative Matrix Factarization (NMF) method. It is important to note that NMF is not a classical clustering method and may not be able to give the exact number of clusters specified."
+HTML("This shiny app is designed for the STAT450/550 Project: Chinese Government Agencies. The project investigates the changes of staffing number in the Chinese Tax Bureau over 2000-2007. This shiny app provides a visualization of clusters of chinese provinces with similar patterns in either total staff number or staff number ratio given various choices of filters. The clustering is based on the Non-negative Matrix Factarization (NMF) method. It is important to note that NMF is not a classical clustering method and may not be able to give the exact number of clusters specified. If the actual number of clusters is less than the pre-specified number of clusters, it means the data are not significantly different enough to be seperated into more clusters."
   )})
   
 }
