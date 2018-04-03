@@ -42,5 +42,5 @@ ui <- fluidPage(
              textOutput("num_results"),
              verbatimTextOutput("num_results2")),
     tabPanel("Plots for Different Clusters", plotOutput("TrendPlot")),
-    tabPanel("ReadMe", htmlOutput("readme"))))
+    tabPanel("ReadMe", br(), htmlOutput("readme"))))
 )
