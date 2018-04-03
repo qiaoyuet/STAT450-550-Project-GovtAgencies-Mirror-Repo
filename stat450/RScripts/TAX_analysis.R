@@ -1,16 +1,20 @@
-setwd("C:/Users/Castaire/Desktop/tax_analysis_attempt")
+
+setwd("C:/Users/Castaire/Desktop/analysis_attempt")
 library("fda")
 library("funFEM")
-#library("Funclustering")
+library("Funclustering")
+
+tax_color <- c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b")
 
 TAX_Cluster <- function(age.lvl=NA, edu.lvl=NA, k){
-  setwd("C:/Users/Castaire/Desktop/tax_analysis_attempt/TAX_Data")
+  setwd("C:/Users/Castaire/Desktop/analysis_attempt/TAX_Data")
   
+  # variables
   age = c("less.than.30", "over.60", "age.31.35", "age.35.40", "age.41.45", "age.46.50", "age.51.54", "age.55.59")
   edu = c("bachelor", "highschool", "juniorhigh", "otherpostsecondary", "postgrad", "technicalcollege")
   
   # error checking
-  if (!is.na(age.lvl) && !is.na(edu.lvl)) stop("Both dept and level chosen \n", call.=FALSE)
+  if (!is.na(age.lvl) && !is.na(edu.lvl) && !is.na(unit.lvl)) stop("Both dept and level chosen \n", call.=FALSE)
   if (!is.na(age.lvl)){
     if (any(!age.lvl%in%age)) stop("Invalid age selection\n",call.=FALSE)
     filename = paste(age.lvl, '.csv', sep="")
@@ -40,24 +44,39 @@ TAX_Cluster <- function(age.lvl=NA, edu.lvl=NA, k){
     ret[[i]] = names(dat)[res$cls==i]
   }
   
-  if(!is.na(age.lvl)){
-    plotfd(fdobj, res$cls, xlab="Year", ylab="Proportion of Staff", 
-           main=paste("Functional Data Curves : Age :", age.lvl))
-  }else if(!is.na(edu.lvl)){
-    plotfd(fdobj, res$cls, xlab="Year", ylab="Proportion of Staff", 
-           main=paste("Functional Data Curves : Education :", edu.lvl))
+  # adjust plot colors (ONLY FOR K = 6)
+  final_col <- res$cls
+  if(k == 6){
+    for(i in 1:length(res$cls)){
+      final_col[i] <- tax_color[res$cls[i]]
+    }
   }
-  print("Clusters: ")
+  
+  # plot
+  if(!is.na(age.lvl)){
+    #plotfd(fdobj, res$cls, xlab="Year", ylab="Proportion of Staff", 
+    #      main=paste("Functional Data Curves : Age :", age.lvl))
+    plotfd(fdobj, final_col, xlab="Year", ylab="Proportion of Staff",
+           main=paste("Functional Data Curves : Age :", age.lvl))
+    print(age.lvl)
+    
+  }else if(!is.na(edu.lvl)){
+    #plotfd(fdobj, res$cls, xlab="Year", ylab="Proportion of Staff", 
+    #main=paste("Functional Data Curves : Education :", edu.lvl))
+    plotfd(fdobj, final_col, xlab="Year", ylab="Proportion of Staff", 
+           main=paste("Functional Data Curves : Edu :", edu.lvl))
+    print(edu.lvl)
+  }
   print(ret)
   ret
+  #return(res)
 }
 
 # testing
-c.less.than.30 <- TAX_Cluster(age.lvl = "less.than.30", k=6)
-
+test <- TAX_Cluster(age.lvl = "over.60", k=6)
 
 ### similarity matrix ###
-setwd("C:/Users/Castaire/Desktop/tax_analysis_attempt/TAX_Data")
+setwd("C:/Users/Castaire/Desktop/analysis_attempt/TAX_Data")
 dat <- read.csv("bachelor.csv")
 provinces <- names(dat)[-c(1)]
 
@@ -85,12 +104,12 @@ for (i in 1:length(edu)){
   }
 }
 
-simmatrixAge = as.data.frame(simmatrixAge)
 #m = as.data.frame(m)
+simmatrixAge = as.data.frame(simmatrixAge)
 simmatrixEdu = as.data.frame(simmatrixEdu)
 
 library(xlsx)
-setwd("C:/Users/Castaire/Desktop/tax_analysis_attempt")
+setwd("C:/Users/Castaire/Desktop/analysis_attempt")
 write.xlsx(simmatrixAge, "similarityAge_TAX.xlsx")
 write.xlsx(simmatrixEdu, "similarityEdu_TAX.xlsx")
 
