@@ -40,6 +40,9 @@ tax_STB_all <- tax_data_STB[, c(1:3)]
 levels(tax_LTB_all$Province)[levels(tax_LTB_all$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
 levels(tax_STB_all$Province)[levels(tax_STB_all$Province)=="Inner Mongolia"] <- "Inner.Mongolia"
 
+tax_LTB_all <- tax_LTB_all %>% filter(tax_LTB_all$Year != "1996")
+tax_STB_all <- tax_STB_all %>% filter(tax_STB_all$Year != "1996")
+
 
 
 server <- function(input, output){
@@ -208,6 +211,7 @@ server <- function(input, output){
       cnmap %>% plyr::join(cluster_tax_STB_all, by = "Province") 
     }
   })
+  
   MapInput <- reactive({
     ggplot(map_cluster())+ aes(x = long, y = lat, group = group, fill = province_cluster)   +
       geom_polygon(color = "grey") +
@@ -314,12 +318,32 @@ server <- function(input, output){
     if(input$STBLTB == "LTB") {
       if (input$TotalRatio == "Total Number of Staff") {
         dat <- map_cluster()
-        tmp <- left_join(tax_LTB_all,dat[,c(8,9)], by="Province")
+        dat <- aggregate(x = dat$long,FUN=sum,by = list(dat$province_cluster,dat$Province))
+        colnames(dat) <- c("province_cluster", "Province","dontcare")
+        tmp <- left_join(tax_LTB_all,dat, by="Province")
+        tmp <- tmp[complete.cases(tmp), ]
           tmp %>% 
             arrange(Year) %>% 
             ggplot(aes(x=Year, y=Number.of.Staff, group=Province)) + 
                 geom_path(aes(color=Province)) + 
                 facet_wrap(~province_cluster)
+      } else if (input$TotalRatio == "Staff Ratio") {
+        # TODO
+      }
+    } else if (input$STBLTB == "STB") {
+      if (input$TotalRatio == "Total Number of Staff") {
+        dat <- map_cluster()
+        dat <- aggregate(x = dat$long,FUN=sum,by = list(dat$province_cluster,dat$Province))
+        colnames(dat) <- c("province_cluster", "Province","dontcare")
+        tmp <- left_join(tax_STB_all,dat, by="Province")
+        tmp <- tmp[complete.cases(tmp), ]
+        tmp %>% 
+          arrange(Year) %>% 
+          ggplot(aes(x=Year, y=Number.of.Staff, group=Province)) + 
+          geom_path(aes(color=Province)) + 
+          facet_wrap(~province_cluster)
+      } else if (input$TotalRatio == "Staff Ratio") {
+        # TODO
       }
     }
   })
