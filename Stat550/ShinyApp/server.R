@@ -43,6 +43,9 @@ levels(tax_STB_all$Province)[levels(tax_STB_all$Province)=="Inner Mongolia"] <- 
 tax_LTB_all <- tax_LTB_all %>% filter(tax_LTB_all$Year != "1996")
 tax_STB_all <- tax_STB_all %>% filter(tax_STB_all$Year != "1996")
 
+tax_LTB_ratio <- read.csv("tax_LTB_ratio.csv")
+tax_STB_ratio <- read.csv("tax_STB_ratio.csv")
+
 
 
 server <- function(input, output){
@@ -315,35 +318,53 @@ server <- function(input, output){
 
   
   TrendInput <- reactive({
+    dat <- map_cluster()
+    dat <- aggregate(x = dat$long,FUN=sum,by = list(dat$province_cluster,dat$Province))
+    colnames(dat) <- c("province_cluster", "Province","dontcare")
+    
     if(input$STBLTB == "LTB") {
       if (input$TotalRatio == "Total Number of Staff") {
-        dat <- map_cluster()
-        dat <- aggregate(x = dat$long,FUN=sum,by = list(dat$province_cluster,dat$Province))
-        colnames(dat) <- c("province_cluster", "Province","dontcare")
         tmp <- left_join(tax_LTB_all,dat, by="Province")
+        tmp$Number.of.Staff <- as.numeric(as.character(tmp$Number.of.Staff))
         tmp <- tmp[complete.cases(tmp), ]
           tmp %>% 
             arrange(Year) %>% 
             ggplot(aes(x=Year, y=Number.of.Staff, group=Province)) + 
                 geom_path(aes(color=Province)) + 
-                facet_wrap(~province_cluster)
+                facet_wrap(~province_cluster) +
+                scale_y_continuous(breaks = round(seq(min(tmp$Number.of.Staff), max(tmp$Number.of.Staff), by = 2000),1))
       } else if (input$TotalRatio == "Staff Ratio") {
-        # TODO
+        tmp <- left_join(tax_LTB_ratio,dat, by="Province")
+        tmp$staff_ratio <- as.numeric(as.character(tmp$staff_ratio))
+        tmp <- tmp[complete.cases(tmp), ]
+        tmp %>% 
+          arrange(Year) %>% 
+          ggplot(aes(x=Year, y=staff_ratio, group=Province)) + 
+          geom_path(aes(color=Province)) + 
+          facet_wrap(~province_cluster) +
+          scale_y_continuous(breaks = round(seq(min(tmp$staff_ratio), max(tmp$staff_ratio), by = 1),1))
       }
     } else if (input$STBLTB == "STB") {
       if (input$TotalRatio == "Total Number of Staff") {
-        dat <- map_cluster()
-        dat <- aggregate(x = dat$long,FUN=sum,by = list(dat$province_cluster,dat$Province))
-        colnames(dat) <- c("province_cluster", "Province","dontcare")
         tmp <- left_join(tax_STB_all,dat, by="Province")
+        tmp$Number.of.Staff <- as.numeric(as.character(tmp$Number.of.Staff))
         tmp <- tmp[complete.cases(tmp), ]
         tmp %>% 
           arrange(Year) %>% 
           ggplot(aes(x=Year, y=Number.of.Staff, group=Province)) + 
           geom_path(aes(color=Province)) + 
-          facet_wrap(~province_cluster)
+          facet_wrap(~province_cluster) +
+          scale_y_continuous(breaks = round(seq(min(tmp$Number.of.Staff), max(tmp$Number.of.Staff), by = 2000),1))
       } else if (input$TotalRatio == "Staff Ratio") {
-        # TODO
+        tmp <- left_join(tax_STB_ratio,dat, by="Province")
+        tmp$staff_ratio <- as.numeric(as.character(tmp$staff_ratio))
+        tmp <- tmp[complete.cases(tmp), ]
+        tmp %>% 
+          arrange(Year) %>% 
+          ggplot(aes(x=Year, y=staff_ratio, group=Province)) + 
+          geom_path(aes(color=Province)) + 
+          facet_wrap(~province_cluster) +
+          scale_y_continuous(breaks = round(seq(min(tmp$staff_ratio), max(tmp$staff_ratio), by = 1),1)) 
       }
     }
   })
